@@ -1,0 +1,216 @@
+/* ─── HERO ───────────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  padding: var(--nav-h) var(--gutter) 0;
+  overflow: hidden;
+}
+
+/* Panel izquierdo — texto */
+.hero__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: var(--sp-xl);
+  padding-top: var(--sp-xl);
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-lg);
+  font-size: var(--size-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  opacity: 0.5;
+}
+
+.hero__eyebrow .sep { opacity: 0.4; }
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--size-hero);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  overflow: hidden;
+}
+
+.hero__title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero__title-line span {
+  display: block;
+  transform: translateY(110%);
+}
+
+.hero__title-line--accent {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.hero__subtitle {
+  margin-top: var(--sp-lg);
+  max-width: 340px;
+  font-size: var(--size-sm);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--color-dark);
+  opacity: 0.65;
+}
+
+.hero__cta {
+  margin-top: var(--sp-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-size: var(--size-sm);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  background: var(--color-dark);
+  color: var(--color-bg);
+  transition: gap var(--dur-med) var(--ease), background var(--dur-fast);
+}
+
+.hero__cta:hover { gap: var(--sp-md); background: var(--color-accent); }
+
+.hero__cta-arrow {
+  font-size: var(--size-md);
+  transition: transform var(--dur-med) var(--ease);
+}
+
+/* Panel derecho — imagen */
+.hero__visual {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background: var(--color-light);
+  overflow: hidden;
+}
+
+.hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transition: transform 1.2s var(--ease);
+}
+
+.hero:hover .hero__image img { transform: scale(1.03); }
+
+/* Ícono E-LA superpuesto */
+.hero__mark {
+  position: absolute;
+  bottom: var(--sp-lg);
+  right: var(--sp-lg);
+  width: 80px;
+  opacity: 0.18;
+  z-index: 3;
+  mix-blend-mode: multiply;
+}
+
+/* Número decorativo */
+.hero__index {
+  position: absolute;
+  right: calc(var(--gutter) + 50% + 1rem);
+  bottom: var(--sp-xl);
+  font-family: var(--font-body);
+  font-size: var(--size-xs);
+  letter-spacing: 0.12em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  opacity: 0.35;
+}
+
+/* Scroll indicator */
+.hero__scroll {
+  position: absolute;
+  bottom: var(--sp-md);
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  z-index: 3;
+}
+
+.hero__scroll-label {
+  font-size: var(--size-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.hero__scroll-line {
+  width: 48px;
+  height: 1px;
+  background: var(--color-dark);
+  opacity: 0.35;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--color-accent);
+  animation: scroll-line 2s var(--ease-soft) infinite;
+}
+
+@keyframes scroll-line {
+  0%   { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Línea vertical decorativa */
+.hero__v-line {
+  position: absolute;
+  top: var(--nav-h);
+  left: 50%;
+  width: 1px;
+  height: 0;
+  background: linear-gradient(to bottom, transparent, var(--color-dark) 20%, var(--color-dark) 80%, transparent);
+  opacity: 0.1;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  .hero__visual {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .hero__text {
+    position: relative;
+    z-index: 2;
+    padding-top: calc(var(--nav-h) + var(--sp-xl));
+    background: linear-gradient(to top, var(--color-bg) 60%, transparent);
+  }
+
+  .hero__title { font-size: clamp(3.5rem, 14vw, 7rem); }
+}

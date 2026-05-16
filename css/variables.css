@@ -1,0 +1,49 @@
+/* ─── VARIABLES GLOBALES — ESTUDIO LANDA ────────────────────────────────── */
+
+:root {
+  /* Colores de marca */
+  --color-dark:    #292623;
+  --color-bg:      #F5F0EA;
+  --color-white:   #FAFAF8;
+  --color-light:   #EDE6DB;
+  --color-sage:    #6B8F71;
+  --color-sage-lt: #A8C4AD;
+  --color-steel:   #4A6FA5;
+  --color-steel-lt:#8AADD1;
+  --color-accent:  var(--color-sage); /* acento principal — cambiar aquí */
+
+  /* Tipografía */
+  --font-display: 'Cormorant', serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  --size-xs:   0.75rem;   /*  12px */
+  --size-sm:   0.875rem;  /*  14px */
+  --size-base: 1rem;      /*  16px */
+  --size-md:   1.25rem;   /*  20px */
+  --size-lg:   1.75rem;   /*  28px */
+  --size-xl:   2.5rem;    /*  40px */
+  --size-2xl:  4rem;      /*  64px */
+  --size-3xl:  6rem;      /*  96px */
+  --size-4xl:  9rem;      /* 144px */
+  --size-hero: clamp(4rem, 11vw, 10rem);
+
+  /* Espaciado */
+  --sp-xs:  0.5rem;
+  --sp-sm:  1rem;
+  --sp-md:  2rem;
+  --sp-lg:  4rem;
+  --sp-xl:  8rem;
+  --sp-2xl: 12rem;
+
+  /* Transiciones */
+  --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:  0.25s;
+  --dur-med:   0.55s;
+  --dur-slow:  0.9s;
+
+  /* Layout */
+  --max-w: 1440px;
+  --gutter: clamp(1.5rem, 5vw, 5rem);
+  --nav-h:  72px;
+}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio Landa — Arquitectura e Interiorismo</title>
+  <meta name="description" content="Estudio de arquitectura e interiorismo con enfoque en el diseño contemporáneo, la conexión con la naturaleza y la calidad de los espacios.">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <!-- CSS — módulos independientes -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/servicios.css">
+  <link rel="stylesheet" href="css/nosotros.css">
+  <link rel="stylesheet" href="css/contacto.css">
+
+  <!-- GSAP (animaciones) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- ── CURSOR PERSONALIZADO ──────────────────────────────────────────── -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursor-follower"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       MÓDULO 1: NAVEGACIÓN  →  editar en css/nav.css  |  js/nav.js
+  ══════════════════════════════════════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+
+    <a href="#" class="nav__logo" aria-label="Estudio Landa">
+      <!-- Logo LANDA — versión compacta (ícono E-LA) -->
+      <svg viewBox="0 0 554.93 656.02" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="#292623" d="m254.1,537.54c-.39-2.25-.93-3.83-1.78-6.31-1.11-3.24-2.18-5.62-2.48-6.27-.8-1.77-2.86-6.06-6.66-11.43-4.28-6.04-7.18-8.39-8.74-9.53-.78-.57-2.58-1.33-3.39-1.73-.36-.04-.73-.07-1.12-.05-1.93.08-3.39.92-3.87,1.2-1.03.61-1.89,1.4-3.46,3.58-.76,1.05-2.09,2.99-4.16,6.92-.61,1.16-1.66,3.2-2.86,5.85-.28.62-1.17,2.59-2.22,5.26-1.8,4.53-2.9,8.1-3.29,9.37-.56,1.84-.96,3.4-1.76,6.52-.41,1.6-.74,2.94-.94,4.77-.15,1.35-.25,2.36-.06,3.7.05.35.3,2.02,1.34,3.98.23.44,1.24,2.28,3.34,4.1,1.43,1.24,2.84,1.9,5.64,3.22.97.46,3.09,1.42,5.92,2.36.39.13.74.24,1.07.35.9.03,6.15.57,6.36.56,2.59-.17,4.48-.86,6.02-1.43,3.36-1.25,5.65-2.86,7.22-3.99,1-.72,2.66-1.91,4.51-3.83,1.21-1.25,2.47-2.55,3.63-4.65,1.53-2.76,1.95-5.17,2.03-5.66.43-2.66.08-4.7-.29-6.84Z"/>
+        <g>
+          <path fill="#292623" d="m238.96,395.12c.62-9.33,1.33-16.88,1.81-21.59.34-3.32,1.06-10.2,2.23-18.96.91-6.83,1.7-11.95,2.47-16.88,1.21-7.77,1.82-11.66,2.83-17.12,1.16-6.26,2.56-13.71,5.12-23.24,1.04-3.85,2-7.06,2.71-9.36l1.8-6.73,1.45-4.1,1.87-6.3,1.51-4.95,1.8-5.81,3.31-10.15,3.75-12.37,3.44-12.43,2.32-9.26,3.12-15.76.8-5.69,1.04-7.88.8-14.38.16-15.6-.24-18.84-.48-17.22-.71-20.55-.89-12.02-1.2-16.57-1.2-13.89-1.39-15.12c-2.22-.27-4.47-.43-6.82-.33-11.75.48-20.69,5.62-23.61,7.34-6.27,3.7-11.5,8.51-21.09,21.82-4.63,6.42-12.73,18.24-25.36,42.22-3.72,7.06-10.12,19.51-17.44,35.66-1.71,3.76-7.11,15.78-13.57,32.08-10.95,27.65-17.71,49.39-20.07,57.13-3.41,11.21-5.86,20.73-10.75,39.77-2.51,9.75-4.52,17.95-5.72,29.07-.89,8.24-1.52,14.38-.36,22.55.3,2.13,1.85,12.34,8.14,24.27,1.43,2.71,7.54,13.92,20.34,24.99,8.73,7.55,17.29,11.59,34.42,19.67,5.91,2.79,18.86,8.68,36.13,14.36,2.38.78,4.51,1.48,6.54,2.13.24-7.16.58-13.88.98-19.97Z"/>
+          <path fill="#292623" d="m417.81,257.44c-2.37-13.72-5.68-23.36-10.86-38.47-6.77-19.75-13.32-34.28-15.13-38.24-4.91-10.77-17.43-36.94-40.62-69.72-26.08-36.86-43.8-51.2-53.32-58.12-4.77-3.46-9.56-6.53-14.53-8.94l1.56,8.64c2.94,16.23,5.17,30.11,6.81,40.85,3.79,24.91,5.21,38.61,5.6,42.5.78,7.73,1.61,17.29,2.05,28.01.11,2.79.36,9.69.3,18.23-.03,4.23-.12,6.95-.18,8.44-.24,5.99-.63,10.4-.72,11.38-.22,2.44-.61,6.15-1.27,10.64-.5,3.43-.96,5.9-1.87,10.83-.56,3.04-1.35,7.27-2.47,12.54-.93,4.37-1.48,6.57-2.65,11.56-1.16,4.95-.79,3.51-4.52,20-3.25,14.38-3.56,15.58-4.34,19.63-1.1,5.69-1.88,10.53-2.41,14.01-.54,3.53-1.18,8.18-1.87,14.25-1.14,10.14-1.41,15.73-2.05,23.73-.62,7.78-1.56,15.85-3.43,31.99-1.3,11.2-1.84,14.97-3.43,28.56-.16,1.38-.56,4.8-1.14,9.42-.47,3.76-.9,6.99-1.24,9.48,5.52.17,9.38-.05,10.68-.13,15.82-1.06,27.3-5.24,36.71-8.74,20.51-7.64,34.47-17.46,44.06-24.32,6.12-4.37,16.2-11.64,27.53-23.37,7.36-7.61,15.05-15.58,22.15-28.34,9.36-16.82,11.89-31.56,12.37-34.53,2.63-16.21.48-28.67-1.78-41.74Z"/>
+        </g>
+        <g>
+          <path fill="#292623" d="m66.6,595.78v-126.93h93.81v6.18h-87.25v51.49h77.32v5.99h-77.32v57.1h88.18v6.18h-94.73Z"/>
+          <polygon fill="#292623" points="499.99 595.78 443.81 468.85 436.9 468.85 381.33 589.61 301.36 589.61 301.36 468.85 294.61 468.85 294.61 595.78 378.48 595.78 381.48 595.78 386.34 595.78 404.89 554.97 440.44 478.21 472.76 551 440.44 551 440.44 558.94 476.29 558.94 492.69 595.78 499.99 595.78"/>
+        </g>
+      </svg>
+    </a>
+
+    <ul class="nav__links">
+      <li><a href="#portafolio" class="nav__link">Portafolio</a></li>
+      <li><a href="#servicios"  class="nav__link">Servicios</a></li>
+      <li><a href="#nosotros"   class="nav__link">Nosotros</a></li>
+      <li><a href="#contacto"   class="nav__link">Contacto</a></li>
+    </ul>
+
+    <a href="#contacto" class="nav__cta">Iniciar proyecto</a>
+
+    <button class="nav__menu-btn" id="menu-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Menú mobile overlay -->
+  <div class="nav__mobile" id="mobile-nav" role="dialog" aria-label="Menú principal">
+    <ul class="nav__mobile-links">
+      <li><a href="#portafolio" class="nav__mobile-link">Portafolio</a></li>
+      <li><a href="#servicios"  class="nav__mobile-link">Servicios</a></li>
+      <li><a href="#nosotros"   class="nav__mobile-link">Nosotros</a></li>
+      <li><a href="#contacto"   class="nav__mobile-link">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       MÓDULO 2: HERO  →  editar en css/hero.css
+  ══════════════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+
+    <!-- Línea vertical decorativa -->
+    <div class="hero__v-line"></div>
+
+    <!-- Panel izquierdo: texto editorial -->
+    <div class="hero__text">
+      <div class="hero__eyebrow">
+        <span>Arquitectura</span>
+        <span class="sep">·</span>
+        <span>Interiorismo</span>
+        <span class="sep">·</span>
+        <span>Diseño</span>
+      </div>
+
+      <h1 class="hero__title" aria-label="Espacios que inspiran">
+        <span class="hero__title-line"><span>Espacios</span></span>
+        <span class="hero__title-line"><span>que</span></span>
+        <span class="hero__title-line hero__title-line--accent"><span>inspiran.</span></span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Creamos entornos que conectan a las personas con la luz, la naturaleza y la esencia del lugar.
+      </p>
+
+      <a href="#portafolio" class="hero__cta">
+        Ver proyectos
+        <span class="hero__cta-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Panel derecho: imagen -->
+    <div class="hero__visual">
+      <div class="hero__image">
+        <!-- Reemplazar con: <img src="assets/images/hero.jpg" alt="Proyecto destacado"> -->
+        <div class="hero__image-placeholder" style="
+          width:100%; height:100%;
+          background: linear-gradient(160deg, #D8CFC4 0%, #B0A496 40%, #8A7E74 100%);
+          display:flex; align-items:flex-end; justify-content:flex-start;
+          padding: 2rem;
+        ">
+          <span style="font-family:'Cormorant',serif; font-size:1rem; color:rgba(255,255,255,0.3); letter-spacing:0.2em; text-transform:uppercase;">
+            — Foto del proyecto aquí
+          </span>
+        </div>
+      </div>
+
+      <!-- Ícono E-LA superpuesto -->
+      <div class="hero__mark">
+        <svg viewBox="0 0 554.93 656.02" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="#292623" d="m254.1,537.54c-.39-2.25-.93-3.83-1.78-6.31-1.11-3.24-2.18-5.62-2.48-6.27-.8-1.77-2.86-6.06-6.66-11.43-4.28-6.04-7.18-8.39-8.74-9.53-.78-.57-2.58-1.33-3.39-1.73-.36-.04-.73-.07-1.12-.05-1.93.08-3.39.92-3.87,1.2-1.03.61-1.89,1.4-3.46,3.58-.76,1.05-2.09,2.99-4.16,6.92-.61,1.16-1.66,3.2-2.86,5.85-.28.62-1.17,2.59-2.22,5.26-1.8,4.53-2.9,8.1-3.29,9.37-.56,1.84-.96,3.4-1.76,6.52-.41,1.6-.74,2.94-.94,4.77-.15,1.35-.25,2.36-.06,3.7.05.35.3,2.02,1.34,3.98.23.44,1.24,2.28,3.34,4.1,1.43,1.24,2.84,1.9,5.64,3.22.97.46,3.09,1.42,5.92,2.36.39.13.74.24,1.07.35.9.03,6.15.57,6.36.56,2.59-.17,4.48-.86,6.02-1.43,3.36-1.25,5.65-2.86,7.22-3.99,1-.72,2.66-1.91,4.51-3.83,1.21-1.25,2.47-2.55,3.63-4.65,1.53-2.76,1.95-5.17,2.03-5.66.43-2.66.08-4.7-.29-6.84Z"/>
+          <g>
+            <path fill="#292623" d="m238.96,395.12c.62-9.33,1.33-16.88,1.81-21.59.34-3.32,1.06-10.2,2.23-18.96.91-6.83,1.7-11.95,2.47-16.88,1.21-7.77,1.82-11.66,2.83-17.12,1.16-6.26,2.56-13.71,5.12-23.24,1.04-3.85,2-7.06,2.71-9.36l1.8-6.73,1.45-4.1,1.87-6.3,1.51-4.95,1.8-5.81,3.31-10.15,3.75-12.37,3.44-12.43,2.32-9.26,3.12-15.76.8-5.69,1.04-7.88.8-14.38.16-15.6-.24-18.84-.48-17.22-.71-20.55-.89-12.02-1.2-16.57-1.2-13.89-1.39-15.12c-2.22-.27-4.47-.43-6.82-.33-11.75.48-20.69,5.62-23.61,7.34-6.27,3.7-11.5,8.51-21.09,21.82-4.63,6.42-12.73,18.24-25.36,42.22-3.72,7.06-10.12,19.51-17.44,35.66-1.71,3.76-7.11,15.78-13.57,32.08-10.95,27.65-17.71,49.39-20.07,57.13-3.41,11.21-5.86,20.73-10.75,39.77-2.51,9.75-4.52,17.95-5.72,29.07-.89,8.24-1.52,14.38-.36,22.55.3,2.13,1.85,12.34,8.14,24.27,1.43,2.71,7.54,13.92,20.34,24.99,8.73,7.55,17.29,11.59,34.42,19.67,5.91,2.79,18.86,8.68,36.13,14.36,2.38.78,4.51,1.48,6.54,2.13.24-7.16.58-13.88.98-19.97Z"/>
+            <path fill="#292623" d="m417.81,257.44c-2.37-13.72-5.68-23.36-10.86-38.47-6.77-19.75-13.32-34.28-15.13-38.24-4.91-10.77-17.43-36.94-40.62-69.72-26.08-36.86-43.8-51.2-53.32-58.12-4.77-3.46-9.56-6.53-14.53-8.94l1.56,8.64c2.94,16.23,5.17,30.11,6.81,40.85,3.79,24.91,5.21,38.61,5.6,42.5.78,7.73,1.61,17.29,2.05,28.01.11,2.79.36,9.69.3,18.23-.03,4.23-.12,6.95-.18,8.44-.24,5.99-.63,10.4-.72,11.38-.22,2.44-.61,6.15-1.27,10.64-.5,3.43-.96,5.9-1.87,10.83-.56,3.04-1.35,7.27-2.47,12.54-.93,4.37-1.48,6.57-2.65,11.56-1.16,4.95-.79,3.51-4.52,20-3.25,14.38-3.56,15.58-4.34,19.63-1.1,5.69-1.88,10.53-2.41,14.01-.54,3.53-1.18,8.18-1.87,14.25-1.14,10.14-1.41,15.73-2.05,23.73-.62,7.78-1.56,15.85-3.43,31.99-1.3,11.2-1.84,14.97-3.43,28.56-.16,1.38-.56,4.8-1.14,9.42-.47,3.76-.9,6.99-1.24,9.48,5.52.17,9.38-.05,10.68-.13,15.82-1.06,27.3-5.24,36.71-8.74,20.51-7.64,34.47-17.46,44.06-24.32,6.12-4.37,16.2-11.64,27.53-23.37,7.36-7.61,15.05-15.58,22.15-28.34,9.36-16.82,11.89-31.56,12.37-34.53,2.63-16.21.48-28.67-1.78-41.74Z"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <span class="hero__index">001 / Inicio</span>
+
+    <div class="hero__scroll">
+      <span class="hero__scroll-label">Descubrir</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       MÓDULO 3: PORTAFOLIO  →  editar en css/portfolio.css  |  js/portfolio.js
+  ══════════════════════════════════════════════════════════════════════ -->
+  <section class="portfolio" id="portafolio">
+
+    <div class="portfolio__header">
+      <div>
+        <span class="section-label">002 / Portafolio</span>
+        <h2 class="portfolio__title">Proyectos <em>recientes</em></h2>
+      </div>
+
+      <div class="portfolio__filter" role="group" aria-label="Filtrar proyectos">
+        <button class="filter-btn filter-btn--active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="arq">Arquitectura</button>
+        <button class="filter-btn" data-filter="int">Interiores</button>
+      </div>
+    </div>
+
+    <!-- Las tarjetas se generan desde js/portfolio.js -->
+    <div class="portfolio__grid" id="portfolio-grid"></div>
+
+    <div class="portfolio__more">
+      <a href="#contacto" class="btn-outline">
+        Ver todos los proyectos <span>→</span>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       MÓDULO 4: SERVICIOS  →  editar en css/servicios.css
+  ══════════════════════════════════════════════════════════════════════ -->
+  <section class="servicios" id="servicios">
+
+    <div class="servicios__header">
+      <div>
+        <span class="section-label">003 / Servicios</span>
+        <h2 class="servicios__title">Lo que <em>hacemos</em></h2>
+      </div>
+    </div>
+
+    <ul class="servicios__list">
+
+      <li class="servicio-item">
+        <span class="servicio-item__num">01</span>
+        <div class="servicio-item__content">
+          <h3 class="servicio-item__name">Arquitectura</h3>
+          <p class="servicio-item__desc">Diseño integral de edificios residenciales, comerciales y de uso mixto. Desde el concepto hasta la obra terminada, con atención al contexto, la función y la experiencia del usuario.</p>
+          <div class="servicio-item__tags">
+            <span class="servicio-item__tag">Diseño Conceptual</span>
+            <span class="servicio-item__tag">Proyecto Ejecutivo</span>
+            <span class="servicio-item__tag">Dirección de Obra</span>
+            <span class="servicio-item__tag">Supervisión</span>
+          </div>
+        </div>
+        <span class="servicio-item__arrow">↗</span>
+      </li>
+
+      <li class="servicio-item">
+        <span class="servicio-item__num">02</span>
+        <div class="servicio-item__content">
+          <h3 class="servicio-item__name">Interiorismo</h3>
+          <p class="servicio-item__desc">Espacios interiores que hablan un lenguaje propio: materiales naturales, iluminación cuidada y objetos con historia. Diseñamos ambientes que se sienten como propios desde el primer día.</p>
+          <div class="servicio-item__tags">
+            <span class="servicio-item__tag">Diseño de Interiores</span>
+            <span class="servicio-item__tag">Especificación de Materiales</span>
+            <span class="servicio-item__tag">Mobiliario</span>
+            <span class="servicio-item__tag">Iluminación</span>
+          </div>
+        </div>
+        <span class="servicio-item__arrow">↗</span>
+      </li>
+
+      <li class="servicio-item">
+        <span class="servicio-item__num">03</span>
+        <div class="servicio-item__content">
+          <h3 class="servicio-item__name">Instalaciones</h3>
+          <p class="servicio-item__desc">Coordinación de sistemas eléctricos, hidráulicos, mecánicos y especiales. Integración técnica con el diseño arquitectónico para lograr eficiencia sin comprometer la estética.</p>
+          <div class="servicio-item__tags">
+            <span class="servicio-item__tag">Eléctrico</span>
+            <span class="servicio-item__tag">Hidráulico</span>
+            <span class="servicio-item__tag">Climatización</span>
+            <span class="servicio-item__tag">Domótica</span>
+          </div>
+        </div>
+        <span class="servicio-item__arrow">↗</span>
+      </li>
+
+      <li class="servicio-item">
+        <span class="servicio-item__num">04</span>
+        <div class="servicio-item__content">
+          <h3 class="servicio-item__name">Consultoría</h3>
+          <p class="servicio-item__desc">Acompañamiento estratégico para proyectos en desarrollo o en proceso de definición. Evaluación de viabilidad, asesoría en compra de inmuebles y gestión de permisos y trámites.</p>
+          <div class="servicio-item__tags">
+            <span class="servicio-item__tag">Asesoría</span>
+            <span class="servicio-item__tag">Viabilidad</span>
+            <span class="servicio-item__tag">Trámites</span>
+          </div>
+        </div>
+        <span class="servicio-item__arrow">↗</span>
+      </li>
+
+    </ul>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       MÓDULO 5: NOSOTROS  →  editar en css/nosotros.css
+  ══════════════════════════════════════════════════════════════════════ -->
+  <section class="nosotros" id="nosotros">
+
+    <!-- Cita filosófica central -->
+    <div class="nosotros__quote">
+      <p class="nosotros__quote-text">
+        Creemos que los espacios bien diseñados tienen el poder de <em>transformar</em> la vida de las personas.
+      </p>
+      <span class="nosotros__quote-author">— Estudio Landa, filosofía de diseño</span>
+    </div>
+
+    <!-- Separador con ícono -->
+    <div class="nosotros__divider">
+      <div class="nosotros__divider-line"></div>
+      <div class="nosotros__divider-mark">
+        <svg viewBox="0 0 554.93 656.02" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="#292623" d="m254.1,537.54c-.39-2.25-.93-3.83-1.78-6.31-1.11-3.24-2.18-5.62-2.48-6.27-.8-1.77-2.86-6.06-6.66-11.43-4.28-6.04-7.18-8.39-8.74-9.53-.78-.57-2.58-1.33-3.39-1.73-.36-.04-.73-.07-1.12-.05-1.93.08-3.39.92-3.87,1.2-1.03.61-1.89,1.4-3.46,3.58-.76,1.05-2.09,2.99-4.16,6.92-.61,1.16-1.66,3.2-2.86,5.85-.28.62-1.17,2.59-2.22,5.26-1.8,4.53-2.9,8.1-3.29,9.37-.56,1.84-.96,3.4-1.76,6.52-.41,1.6-.74,2.94-.94,4.77-.15,1.35-.25,2.36-.06,3.7.05.35.3,2.02,1.34,3.98.23.44,1.24,2.28,3.34,4.1,1.43,1.24,2.84,1.9,5.64,3.22.97.46,3.09,1.42,5.92,2.36.39.13.74.24,1.07.35.9.03,6.15.57,6.36.56,2.59-.17,4.48-.86,6.02-1.43,3.36-1.25,5.65-2.86,7.22-3.99,1-.72,2.66-1.91,4.51-3.83,1.21-1.25,2.47-2.55,3.63-4.65,1.53-2.76,1.95-5.17,2.03-5.66.43-2.66.08-4.7-.29-6.84Z"/>
+          <g>
+            <path fill="#292623" d="m238.96,395.12c.62-9.33,1.33-16.88,1.81-21.59.34-3.32,1.06-10.2,2.23-18.96.91-6.83,1.7-11.95,2.47-16.88,1.21-7.77,1.82-11.66,2.83-17.12,1.16-6.26,2.56-13.71,5.12-23.24,1.04-3.85,2-7.06,2.71-9.36l1.8-6.73,1.45-4.1,1.87-6.3,1.51-4.95,1.8-5.81,3.31-10.15,3.75-12.37,3.44-12.43,2.32-9.26,3.12-15.76.8-5.69,1.04-7.88.8-14.38.16-15.6-.24-18.84-.48-17.22-.71-20.55-.89-12.02-1.2-16.57-1.2-13.89-1.39-15.12c-2.22-.27-4.47-.43-6.82-.33-11.75.48-20.69,5.62-23.61,7.34-6.27,3.7-11.5,8.51-21.09,21.82-4.63,6.42-12.73,18.24-25.36,42.22-3.72,7.06-10.12,19.51-17.44,35.66-1.71,3.76-7.11,15.78-13.57,32.08-10.95,27.65-17.71,49.39-20.07,57.13-3.41,11.21-5.86,20.73-10.75,39.77-2.51,9.75-4.52,17.95-5.72,29.07-.89,8.24-1.52,14.38-.36,22.55.3,2.13,1.85,12.34,8.14,24.27,1.43,2.71,7.54,13.92,20.34,24.99,8.73,7.55,17.29,11.59,34.42,19.67,5.91,2.79,18.86,8.68,36.13,14.36,2.38.78,4.51,1.48,6.54,2.13.24-7.16.58-13.88.98-19.97Z"/>
+            <path fill="#292623" d="m417.81,257.44c-2.37-13.72-5.68-23.36-10.86-38.47-6.77-19.75-13.32-34.28-15.13-38.24-4.91-10.77-17.43-36.94-40.62-69.72-26.08-36.86-43.8-51.2-53.32-58.12-4.77-3.46-9.56-6.53-14.53-8.94l1.56,8.64c2.94,16.23,5.17,30.11,6.81,40.85,3.79,24.91,5.21,38.61,5.6,42.5.78,7.73,1.61,17.29,2.05,28.01.11,2.79.36,9.69.3,18.23-.03,4.23-.12,6.95-.18,8.44-.24,5.99-.63,10.4-.72,11.38-.22,2.44-.61,6.15-1.27,10.64-.5,3.43-.96,5.9-1.87,10.83-.56,3.04-1.35,7.27-2.47,12.54-.93,4.37-1.48,6.57-2.65,11.56-1.16,4.95-.79,3.51-4.52,20-3.25,14.38-3.56,15.58-4.34,19.63-1.1,5.69-1.88,10.53-2.41,14.01-.54,3.53-1.18,8.18-1.87,14.25-1.14,10.14-1.41,15.73-2.05,23.73-.62,7.78-1.56,15.85-3.43,31.99-1.3,11.2-1.84,14.97-3.43,28.56-.16,1.38-.56,4.8-1.14,9.42-.47,3.76-.9,6.99-1.24,9.48,5.52.17,9.38-.05,10.68-.13,15.82-1.06,27.3-5.24,36.71-8.74,20.51-7.64,34.47-17.46,44.06-24.32,6.12-4.37,16.2-11.64,27.53-23.37,7.36-7.61,15.05-15.58,22.15-28.34,9.36-16.82,11.89-31.56,12.37-34.53,2.63-16.21.48-28.67-1.78-41.74Z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="nosotros__divider-line"></div>
+    </div>
+
+    <!-- Dos columnas: texto + imagen -->
+    <div class="nosotros__grid">
+
+      <div class="nosotros__content">
+        <div>
+          <span class="section-label">004 / Nosotros</span>
+          <h2 class="nosotros__title">Diseño con <em>propósito</em></h2>
+        </div>
+
+        <div class="nosotros__body">
+          <p>Somos un estudio de arquitectura e interiorismo fundado en México con la convicción de que el diseño debe ser bello, funcional y responsable con su entorno.</p>
+          <p>Nos inspiran la tradición constructiva mexicana, la austeridad escandinava, la precisión japonesa y la lógica compositiva de la Bauhaus. Cada proyecto es una oportunidad de síntesis.</p>
+          <p>Trabajamos en estrecha colaboración con nuestros clientes, entendiendo sus necesidades y aspiraciones para traducirlas en espacios que los representen.</p>
+        </div>
+
+        <div class="nosotros__values">
+          <div class="nosotros__value">Conexión con la naturaleza y la luz</div>
+          <div class="nosotros__value">Materiales honestos y duraderos</div>
+          <div class="nosotros__value">Diseño centrado en el usuario</div>
+          <div class="nosotros__value">Compromiso técnico y estético</div>
+        </div>
+      </div>
+
+      <div class="nosotros__visual">
+        <!-- Reemplazar con: <img class="nosotros__image" src="assets/images/equipo.jpg" alt="Equipo Estudio Landa"> -->
+        <div class="nosotros__image-placeholder"></div>
+
+        <div class="nosotros__stats">
+          <div>
+            <div class="nosotros__stat-num">8+</div>
+            <div class="nosotros__stat-label">Años de experiencia</div>
+          </div>
+          <div>
+            <div class="nosotros__stat-num">60+</div>
+            <div class="nosotros__stat-label">Proyectos realizados</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       MÓDULO 6: CONTACTO  →  editar en css/contacto.css
+  ══════════════════════════════════════════════════════════════════════ -->
+  <section class="contacto" id="contacto">
+
+    <div class="contacto__header">
+      <span class="section-label">005 / Contacto</span>
+      <h2 class="contacto__title">
+        Hablemos de<br>tu <em>proyecto.</em>
+      </h2>
+    </div>
+
+    <div class="contacto__grid">
+
+      <!-- Formulario -->
+      <form class="contacto__form" id="contact-form" name="contacto" netlify>
+        <div class="form-group">
+          <label class="form-label" for="nombre">Nombre</label>
+          <input class="form-input" id="nombre" name="nombre" type="text" placeholder="Tu nombre completo" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Correo electrónico</label>
+          <input class="form-input" id="email" name="email" type="email" placeholder="correo@ejemplo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="proyecto">Tipo de proyecto</label>
+          <input class="form-input" id="proyecto" name="proyecto" type="text" placeholder="Casa habitación, oficina, renovación…">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="mensaje">Mensaje</label>
+          <textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu idea o proyecto…" rows="4"></textarea>
+        </div>
+
+        <button class="form-submit" type="submit">
+          Enviar mensaje
+          <span>→</span>
+        </button>
+      </form>
+
+      <!-- Información de contacto -->
+      <div class="contacto__info">
+
+        <div>
+          <p class="contacto__email-label">Escríbenos directo</p>
+          <a class="contacto__email-link" href="mailto:hola@estudiolanda.mx">
+            hola@estudiolanda.mx
+          </a>
+        </div>
+
+        <div>
+          <p class="contacto__email-label">Ubicación</p>
+          <p class="contacto__address">
+            México<br>
+            Disponibles para proyectos<br>en todo el país
+          </p>
+        </div>
+
+        <div class="contacto__social">
+          <a class="social-link" href="#" target="_blank" rel="noopener">
+            Instagram <span>↗</span>
+          </a>
+          <a class="social-link" href="#" target="_blank" rel="noopener">
+            Houzz <span>↗</span>
+          </a>
+          <a class="social-link" href="#" target="_blank" rel="noopener">
+            LinkedIn <span>↗</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="contacto__footer">
+      <div class="contacto__footer-logo">
+        <svg viewBox="0 0 554.93 656.02" xmlns="http://www.w3.org/2000/svg" aria-label="Estudio Landa">
+          <path fill="rgba(245,240,234,0.5)" d="m254.1,537.54c-.39-2.25-.93-3.83-1.78-6.31-1.11-3.24-2.18-5.62-2.48-6.27-.8-1.77-2.86-6.06-6.66-11.43-4.28-6.04-7.18-8.39-8.74-9.53-.78-.57-2.58-1.33-3.39-1.73-.36-.04-.73-.07-1.12-.05-1.93.08-3.39.92-3.87,1.2-1.03.61-1.89,1.4-3.46,3.58-.76,1.05-2.09,2.99-4.16,6.92-.61,1.16-1.66,3.2-2.86,5.85-.28.62-1.17,2.59-2.22,5.26-1.8,4.53-2.9,8.1-3.29,9.37-.56,1.84-.96,3.4-1.76,6.52-.41,1.6-.74,2.94-.94,4.77-.15,1.35-.25,2.36-.06,3.7.05.35.3,2.02,1.34,3.98.23.44,1.24,2.28,3.34,4.1,1.43,1.24,2.84,1.9,5.64,3.22.97.46,3.09,1.42,5.92,2.36.39.13.74.24,1.07.35.9.03,6.15.57,6.36.56,2.59-.17,4.48-.86,6.02-1.43,3.36-1.25,5.65-2.86,7.22-3.99,1-.72,2.66-1.91,4.51-3.83,1.21-1.25,2.47-2.55,3.63-4.65,1.53-2.76,1.95-5.17,2.03-5.66.43-2.66.08-4.7-.29-6.84Z"/>
+          <g>
+            <path fill="rgba(245,240,234,0.5)" d="m238.96,395.12c.62-9.33,1.33-16.88,1.81-21.59.34-3.32,1.06-10.2,2.23-18.96.91-6.83,1.7-11.95,2.47-16.88,1.21-7.77,1.82-11.66,2.83-17.12,1.16-6.26,2.56-13.71,5.12-23.24,1.04-3.85,2-7.06,2.71-9.36l1.8-6.73,1.45-4.1,1.87-6.3,1.51-4.95,1.8-5.81,3.31-10.15,3.75-12.37,3.44-12.43,2.32-9.26,3.12-15.76.8-5.69,1.04-7.88.8-14.38.16-15.6-.24-18.84-.48-17.22-.71-20.55-.89-12.02-1.2-16.57-1.2-13.89-1.39-15.12c-2.22-.27-4.47-.43-6.82-.33-11.75.48-20.69,5.62-23.61,7.34-6.27,3.7-11.5,8.51-21.09,21.82-4.63,6.42-12.73,18.24-25.36,42.22-3.72,7.06-10.12,19.51-17.44,35.66-1.71,3.76-7.11,15.78-13.57,32.08-10.95,27.65-17.71,49.39-20.07,57.13-3.41,11.21-5.86,20.73-10.75,39.77-2.51,9.75-4.52,17.95-5.72,29.07-.89,8.24-1.52,14.38-.36,22.55.3,2.13,1.85,12.34,8.14,24.27,1.43,2.71,7.54,13.92,20.34,24.99,8.73,7.55,17.29,11.59,34.42,19.67,5.91,2.79,18.86,8.68,36.13,14.36,2.38.78,4.51,1.48,6.54,2.13.24-7.16.58-13.88.98-19.97Z"/>
+            <path fill="rgba(245,240,234,0.5)" d="m417.81,257.44c-2.37-13.72-5.68-23.36-10.86-38.47-6.77-19.75-13.32-34.28-15.13-38.24-4.91-10.77-17.43-36.94-40.62-69.72-26.08-36.86-43.8-51.2-53.32-58.12-4.77-3.46-9.56-6.53-14.53-8.94l1.56,8.64c2.94,16.23,5.17,30.11,6.81,40.85,3.79,24.91,5.21,38.61,5.6,42.5.78,7.73,1.61,17.29,2.05,28.01.11,2.79.36,9.69.3,18.23-.03,4.23-.12,6.95-.18,8.44-.24,5.99-.63,10.4-.72,11.38-.22,2.44-.61,6.15-1.27,10.64-.5,3.43-.96,5.9-1.87,10.83-.56,3.04-1.35,7.27-2.47,12.54-.93,4.37-1.48,6.57-2.65,11.56-1.16,4.95-.79,3.51-4.52,20-3.25,14.38-3.56,15.58-4.34,19.63-1.1,5.69-1.88,10.53-2.41,14.01-.54,3.53-1.18,8.18-1.87,14.25-1.14,10.14-1.41,15.73-2.05,23.73-.62,7.78-1.56,15.85-3.43,31.99-1.3,11.2-1.84,14.97-3.43,28.56-.16,1.38-.56,4.8-1.14,9.42-.47,3.76-.9,6.99-1.24,9.48,5.52.17,9.38-.05,10.68-.13,15.82-1.06,27.3-5.24,36.71-8.74,20.51-7.64,34.47-17.46,44.06-24.32,6.12-4.37,16.2-11.64,27.53-23.37,7.36-7.61,15.05-15.58,22.15-28.34,9.36-16.82,11.89-31.56,12.37-34.53,2.63-16.21.48-28.67-1.78-41.74Z"/>
+          </g>
+        </svg>
+      </div>
+      <p class="contacto__copyright">
+        © <span data-year></span> Estudio Landa. Todos los derechos reservados.
+      </p>
+    </footer>
+
+  </section>
+
+  <!-- ── JS — módulos independientes ──────────────────────────────────── -->
+  <script src="js/nav.js"></script>
+  <script src="js/portfolio.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
