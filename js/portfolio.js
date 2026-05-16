@@ -1,84 +1,145 @@
-/* ─── PORTAFOLIO — filtros y datos ───────────────────────────────────────── */
+/* ─── PORTAFOLIO — scroll horizontal tipo Floema ─────────────────────────── */
 
 (function () {
-  /* Datos de proyectos — editar aquí para agregar nuevos */
+
+  /* ── Datos de proyectos ─────────────────────────────────────────────────── */
   const proyectos = [
     {
       id: 1,
-      nombre: 'Casa Habitación<br><em>Los Encinos</em>',
+      nombre: 'Los Encinos',
+      subtitulo: 'Casa Habitación',
       categoria: 'arq',
       categoriaLabel: 'Arquitectura',
       año: '2024',
       tamaño: 'large',
-      color: 'linear-gradient(135deg, #D4C9BB 0%, #B8A99A 100%)'
+      bg: 'linear-gradient(140deg, #C8C4BC 0%, #9E9890 100%)'
     },
     {
       id: 2,
-      nombre: 'Loft<br><em>Santa Fe</em>',
+      nombre: 'Santa Fe',
+      subtitulo: 'Loft Contemporáneo',
       categoria: 'int',
       categoriaLabel: 'Interiorismo',
       año: '2024',
       tamaño: 'medium',
-      color: 'linear-gradient(135deg, #C2CBCC 0%, #8FA3A8 100%)'
+      bg: 'linear-gradient(140deg, #B8C4C2 0%, #8AA0A0 100%)'
     },
     {
       id: 3,
-      nombre: 'Oficinas<br><em>Corporativo Norte</em>',
+      nombre: 'Norte Corporativo',
+      subtitulo: 'Oficinas',
       categoria: 'arq',
       categoriaLabel: 'Arquitectura + Interiorismo',
       año: '2023',
-      tamaño: 'half',
-      color: 'linear-gradient(135deg, #BFC8B8 0%, #8FA089 100%)'
+      tamaño: 'wide',
+      bg: 'linear-gradient(140deg, #BECABD 0%, #8EA890 100%)'
     },
     {
       id: 4,
-      nombre: 'Restaurante<br><em>Jardín</em>',
+      nombre: 'Jardín',
+      subtitulo: 'Restaurante',
       categoria: 'int',
       categoriaLabel: 'Interiorismo',
       año: '2023',
-      tamaño: 'half',
-      color: 'linear-gradient(135deg, #C8C2B8 0%, #A89A8F 100%)'
+      tamaño: 'square',
+      bg: 'linear-gradient(140deg, #C4C0B8 0%, #9C9890 100%)'
     },
     {
       id: 5,
-      nombre: 'Residencia<br><em>Pedregal</em>',
+      nombre: 'Pedregal',
+      subtitulo: 'Residencia',
       categoria: 'arq',
       categoriaLabel: 'Arquitectura',
       año: '2023',
-      tamaño: 'wide',
-      color: 'linear-gradient(135deg, #C9C2BB 0%, #9A9090 100%)'
+      tamaño: 'large',
+      bg: 'linear-gradient(140deg, #C0C4C4 0%, #98A0A4 100%)'
     }
   ];
 
-  const grid = document.getElementById('portfolio-grid');
-  if (!grid) return;
+  const track    = document.getElementById('portfolio-track');
+  const progressBar = document.getElementById('portfolio-progress-bar');
+  const prevBtn  = document.getElementById('arrow-prev');
+  const nextBtn  = document.getElementById('arrow-next');
 
-  /* Renderizar tarjetas */
-  function renderCards(filtro = 'all') {
-    const filtrados = filtro === 'all'
+  if (!track) return;
+
+  /* ── Renderizar tarjetas ─────────────────────────────────────────────────── */
+  function renderCards (filtro = 'all') {
+    const lista = filtro === 'all'
       ? proyectos
       : proyectos.filter(p => p.categoria === filtro);
 
-    grid.innerHTML = filtrados.map(p => `
-      <article class="project-card project-card--${p.tamaño}" data-cat="${p.categoria}">
+    track.innerHTML = lista.map(p => `
+      <article class="project-card project-card--${p.tamaño}" role="listitem" data-cat="${p.categoria}">
         <div class="project-card__image">
-          <div class="project-card__placeholder"
-               style="background: ${p.color}; color: transparent;">
-            ${p.nombre.replace(/<[^>]+>/g, '')}
-          </div>
+          <div class="project-card__placeholder" style="background:${p.bg}"></div>
         </div>
-        <div class="project-card__overlay">
-          <span class="project-card__category">${p.categoriaLabel}</span>
-          <h3 class="project-card__name">${p.nombre}</h3>
+
+        <!-- Tag de categoría (estilo Floema) -->
+        <div class="project-card__category-tag">
+          <span class="tag tag--sage">${p.categoriaLabel}</span>
+        </div>
+
+        <!-- Caption siempre visible -->
+        <div class="project-card__caption">
+          <div>
+            <div class="project-card__name">${p.subtitulo}<br><span style="font-weight:700">${p.nombre}</span></div>
+          </div>
           <span class="project-card__year">${p.año}</span>
         </div>
       </article>
     `).join('');
 
-    /* Re-inicializar hover del cursor */
-    grid.querySelectorAll('.project-card').forEach(card => {
-      const cursor   = document.getElementById('cursor');
-      const follower = document.getElementById('cursor-follower');
+    updateProgress();
+    bindCursorHover();
+  }
+
+  /* ── Barra de progreso ───────────────────────────────────────────────────── */
+  function updateProgress () {
+    if (!progressBar) return;
+    const max = track.scrollWidth - track.clientWidth;
+    const pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
+    progressBar.style.width = `${pct}%`;
+  }
+
+  track.addEventListener('scroll', updateProgress, { passive: true });
+
+  /* ── Flechas de navegación ───────────────────────────────────────────────── */
+  function scrollBy (dir) {
+    const step = track.clientWidth * 0.72;
+    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+  }
+
+  prevBtn?.addEventListener('click', () => scrollBy(-1));
+  nextBtn?.addEventListener('click', () => scrollBy(1));
+
+  /* ── Drag to scroll (ratón) ─────────────────────────────────────────────── */
+  let isDragging = false, startX = 0, startScroll = 0;
+
+  track.addEventListener('mousedown', e => {
+    isDragging = true;
+    startX = e.pageX - track.offsetLeft;
+    startScroll = track.scrollLeft;
+    track.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+    track.style.cursor = 'grab';
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const x = e.pageX - track.offsetLeft;
+    track.scrollLeft = startScroll - (x - startX);
+  });
+
+  /* ── Cursor hover en tarjetas ────────────────────────────────────────────── */
+  function bindCursorHover () {
+    const cursor   = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    track.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('mouseenter', () => {
         cursor?.classList.add('cursor--hover');
         follower?.classList.add('cursor-follower--hover');
@@ -88,28 +149,19 @@
         follower?.classList.remove('cursor-follower--hover');
       });
     });
-
-    /* Re-disparar animaciones si GSAP está disponible */
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.refresh();
-      grid.querySelectorAll('.project-card').forEach((card, i) => {
-        gsap.fromTo(card,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: i * 0.08 }
-        );
-      });
-    }
   }
 
-  renderCards();
-
-  /* Filtros */
+  /* ── Filtros ─────────────────────────────────────────────────────────────── */
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-btn--active'));
       btn.classList.add('filter-btn--active');
+      track.scrollTo({ left: 0, behavior: 'smooth' });
       renderCards(btn.dataset.filter);
     });
   });
+
+  /* ── Init ────────────────────────────────────────────────────────────────── */
+  renderCards();
 
 })();

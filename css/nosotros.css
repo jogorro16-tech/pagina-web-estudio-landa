@@ -6,49 +6,87 @@
   overflow: hidden;
 }
 
-/* Cita grande */
+/* Cita central */
 .nosotros__quote {
   text-align: center;
   margin: 0 auto var(--sp-2xl);
-  max-width: 900px;
+  max-width: 860px;
 }
 
 .nosotros__quote-text {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3.8rem);
-  font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  font-style: italic;
+  font-size: clamp(1.7rem, 4vw, 3.5rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-dark);
 }
 
-.nosotros__quote-text em { color: var(--color-accent); font-style: normal; }
+.nosotros__quote-text strong {
+  font-weight: var(--w-bold);
+}
+
+.nosotros__quote-text em {
+  /* Usando el serif solo aquí como acento */
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-accent);
+  font-weight: var(--w-regular);
+}
 
 .nosotros__quote-author {
   margin-top: var(--sp-md);
   font-size: var(--size-xs);
+  font-weight: var(--w-medium);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.4;
+  color: var(--color-mid);
+  opacity: 0.5;
 }
 
-/* Layout de dos columnas */
+/* Separador con ícono */
+.nosotros__divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-2xl);
+}
+
+.nosotros__divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.nosotros__divider-mark {
+  width: 32px;
+  opacity: 0.15;
+}
+
+/* Grid de dos columnas */
 .nosotros__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-xl);
-  align-items: center;
+  align-items: start;
 }
 
+/* Columna de contenido */
 .nosotros__content { display: flex; flex-direction: column; gap: var(--sp-lg); }
 
 .nosotros__title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 300;
-  line-height: 1.1;
+  font-size: var(--size-display);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.03em;
+  line-height: 1.0;
 }
 
-.nosotros__title em { color: var(--color-accent); }
+.nosotros__title strong { font-weight: var(--w-bold); }
+.nosotros__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-accent);
+  font-weight: var(--w-regular);
+}
 
 .nosotros__body {
   display: flex;
@@ -56,20 +94,13 @@
   gap: var(--sp-md);
 }
 
-.nosotros__body p {
-  font-size: var(--size-base);
-  font-weight: 300;
-  line-height: 1.8;
-  opacity: 0.75;
-}
-
 /* Valores */
 .nosotros__values {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-sm);
+  gap: 0.75rem;
   padding-top: var(--sp-md);
-  border-top: 1px solid rgba(41,38,35,0.1);
+  border-top: 1px solid var(--color-border);
 }
 
 .nosotros__value {
@@ -77,20 +108,25 @@
   align-items: center;
   gap: var(--sp-sm);
   font-size: var(--size-sm);
-  font-weight: 300;
+  font-weight: var(--w-light);
+  color: var(--color-mid);
 }
 
 .nosotros__value::before {
   content: '';
-  width: 32px;
+  width: 24px;
   height: 1px;
   background: var(--color-accent);
   flex-shrink: 0;
 }
 
-/* Imagen */
-.nosotros__visual {
-  position: relative;
+/* Columna visual */
+.nosotros__visual { position: relative; }
+
+.nosotros__image-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(160deg, #C8CCCA 0%, #9BA5A0 60%, #7A8680 100%);
 }
 
 .nosotros__image {
@@ -98,16 +134,9 @@
   aspect-ratio: 3/4;
   object-fit: cover;
   display: block;
-  background: var(--color-light);
 }
 
-.nosotros__image-placeholder {
-  width: 100%;
-  aspect-ratio: 3/4;
-  background: linear-gradient(160deg, var(--color-light) 0%, #C9BDB0 100%);
-}
-
-/* Estadísticas flotantes */
+/* Caja de estadísticas superpuesta */
 .nosotros__stats {
   position: absolute;
   bottom: calc(-1 * var(--sp-lg));
@@ -121,41 +150,28 @@
 }
 
 .nosotros__stat-num {
-  font-family: var(--font-display);
   font-size: var(--size-2xl);
-  font-weight: 300;
-  letter-spacing: -0.03em;
+  font-weight: var(--w-thin);
+  letter-spacing: -0.04em;
   line-height: 1;
+  color: var(--color-white);
 }
 
 .nosotros__stat-label {
   font-size: var(--size-xs);
+  font-weight: var(--w-light);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.5;
-}
-
-/* Separador decorativo */
-.nosotros__divider {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-md);
-  margin: var(--sp-2xl) 0;
-}
-
-.nosotros__divider-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(41,38,35,0.1);
-}
-
-.nosotros__divider-mark {
-  width: 40px;
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 @media (max-width: 900px) {
   .nosotros__grid { grid-template-columns: 1fr; }
   .nosotros__visual { order: -1; }
-  .nosotros__stats { position: static; margin-top: calc(-1 * var(--sp-lg)); }
+  .nosotros__stats {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: var(--sp-sm);
+  }
 }

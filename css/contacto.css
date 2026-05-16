@@ -8,39 +8,46 @@
   overflow: hidden;
 }
 
-/* Marca de agua decorativa */
+/* Marca de agua */
 .contacto::before {
   content: 'LANDA';
   position: absolute;
-  bottom: -0.1em;
-  right: -0.05em;
-  font-family: var(--font-display);
-  font-size: 28vw;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  color: rgba(245,240,234,0.025);
+  bottom: -0.08em;
+  right: -0.04em;
+  font-family: var(--font-main);
+  font-size: 26vw;
+  font-weight: var(--w-black);
+  letter-spacing: -0.05em;
+  color: rgba(242,245,242,0.022);
   line-height: 1;
   pointer-events: none;
   user-select: none;
 }
 
-.contacto__header {
-  margin-bottom: var(--sp-xl);
-}
+/* Header */
+.contacto__header { margin-bottom: var(--sp-xl); }
 
 .contacto__header .section-label { color: var(--color-sage-lt); }
 
 .contacto__title {
-  font-size: clamp(3rem, 7vw, 7rem);
-  font-weight: 300;
-  color: var(--color-bg);
-  line-height: 0.95;
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.04em;
+  line-height: 0.93;
+  color: var(--color-white);
   margin-top: var(--sp-sm);
 }
 
-.contacto__title em { color: var(--color-sage-lt); }
+.contacto__title strong { font-weight: var(--w-bold); }
 
-/* Columnas */
+.contacto__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-sage-lt);
+  font-weight: var(--w-regular);
+}
+
+/* Grid 2 columnas */
 .contacto__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -51,56 +58,60 @@
 /* Formulario */
 .contacto__form { display: flex; flex-direction: column; gap: var(--sp-md); }
 
-.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
 
 .form-label {
   font-size: var(--size-xs);
+  font-weight: var(--w-medium);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.4;
+  color: rgba(242,245,242,0.35);
 }
 
-.form-input,
-.form-textarea {
-  font-family: var(--font-body);
+.form-input, .form-textarea {
+  font-family: var(--font-main);
   font-size: var(--size-base);
-  font-weight: 300;
+  font-weight: var(--w-light);
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(245,240,234,0.2);
-  color: var(--color-bg);
+  border-bottom: 1px solid rgba(242,245,242,0.15);
+  color: var(--color-white);
   padding: var(--sp-sm) 0;
   width: 100%;
-  transition: border-color var(--dur-fast);
   outline: none;
+  transition: border-color var(--dur-fast);
   cursor: none;
 }
 
 .form-input:focus,
-.form-textarea:focus { border-color: var(--color-sage); }
+.form-textarea:focus {
+  border-color: var(--color-sage-lt);
+}
 
 .form-input::placeholder,
-.form-textarea::placeholder { color: rgba(245,240,234,0.2); }
+.form-textarea::placeholder {
+  color: rgba(242,245,242,0.18);
+  font-weight: var(--w-light);
+}
 
-.form-textarea { resize: none; min-height: 120px; }
+.form-textarea { resize: none; min-height: 100px; }
 
 .form-submit {
   margin-top: var(--sp-sm);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--sp-md);
-  font-size: var(--size-sm);
-  font-weight: 400;
-  letter-spacing: 0.1em;
+  font-family: var(--font-main);
+  font-size: var(--size-xs);
+  font-weight: var(--w-medium);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 1.1rem 2rem;
-  background: transparent;
-  border: 1.5px solid rgba(245,240,234,0.3);
-  color: var(--color-bg);
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(242,245,242,0.2);
+  color: var(--color-white);
   width: 100%;
-  transition: background var(--dur-fast), border-color var(--dur-fast);
   cursor: none;
+  transition: background var(--dur-fast), border-color var(--dur-fast);
 }
 
 .form-submit:hover {
@@ -108,22 +119,24 @@
   border-color: var(--color-sage);
 }
 
-/* Info lateral */
+/* Info de contacto */
 .contacto__info { display: flex; flex-direction: column; gap: var(--sp-xl); }
 
-.contacto__email-label {
+.contacto__info-block { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.contacto__info-label {
   font-size: var(--size-xs);
-  letter-spacing: 0.12em;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.4;
-  margin-bottom: var(--sp-sm);
+  color: rgba(242,245,242,0.3);
 }
 
 .contacto__email-link {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
-  font-weight: 300;
-  color: var(--color-bg);
+  font-size: clamp(1rem, 2.2vw, 1.8rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.02em;
+  color: var(--color-white);
   display: inline-block;
   position: relative;
 }
@@ -133,7 +146,7 @@
   position: absolute;
   bottom: 0; left: 0;
   width: 0; height: 1px;
-  background: var(--color-sage);
+  background: var(--color-sage-lt);
   transition: width var(--dur-slow) var(--ease);
 }
 
@@ -141,45 +154,48 @@
 
 .contacto__address {
   font-size: var(--size-sm);
-  font-weight: 300;
+  font-weight: var(--w-light);
   line-height: 1.8;
-  opacity: 0.5;
+  color: rgba(242,245,242,0.4);
 }
 
-/* Redes sociales */
-.contacto__social { display: flex; flex-direction: column; gap: var(--sp-sm); }
+/* Redes */
+.contacto__social { display: flex; flex-direction: column; }
 
 .social-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--sp-sm) 0;
-  border-bottom: 1px solid rgba(245,240,234,0.08);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(242,245,242,0.07);
   font-size: var(--size-sm);
-  font-weight: 300;
-  color: rgba(245,240,234,0.5);
+  font-weight: var(--w-light);
+  color: rgba(242,245,242,0.4);
   transition: color var(--dur-fast), padding-left var(--dur-med) var(--ease);
 }
 
-.social-link:hover { color: var(--color-bg); padding-left: var(--sp-sm); }
+.social-link:hover {
+  color: var(--color-white);
+  padding-left: var(--sp-sm);
+}
 
 /* Footer */
 .contacto__footer {
   margin-top: var(--sp-2xl);
   padding-top: var(--sp-md);
-  border-top: 1px solid rgba(245,240,234,0.08);
+  border-top: 1px solid rgba(242,245,242,0.07);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.contacto__footer-logo svg { height: 28px; width: auto; }
-.contacto__footer-logo .cls-1 { fill: rgba(245,240,234,0.6); }
+.contacto__footer-logo svg { height: 24px; width: auto; }
 
 .contacto__copyright {
   font-size: var(--size-xs);
-  opacity: 0.3;
-  letter-spacing: 0.08em;
+  font-weight: var(--w-light);
+  color: rgba(242,245,242,0.25);
+  letter-spacing: 0.06em;
 }
 
 @media (max-width: 768px) {

@@ -6,10 +6,10 @@
   <title>Estudio Landa — Arquitectura e Interiorismo</title>
   <meta name="description" content="Estudio de arquitectura e interiorismo con enfoque en el diseño contemporáneo, la conexión con la naturaleza y la calidad de los espacios.">
 
-  <!-- Tipografías -->
+  <!-- Tipografías: Hanken Grotesk (= HK Grotesk) + Cormorant para acentos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 
   <!-- CSS — módulos independientes -->
   <link rel="stylesheet" href="css/variables.css">
@@ -96,7 +96,7 @@
 
       <h1 class="hero__title" aria-label="Espacios que inspiran">
         <span class="hero__title-line"><span>Espacios</span></span>
-        <span class="hero__title-line"><span>que</span></span>
+        <span class="hero__title-line hero__title-line--bold"><span>que</span></span>
         <span class="hero__title-line hero__title-line--accent"><span>inspiran.</span></span>
       </h1>
 
@@ -155,9 +155,8 @@
     <div class="portfolio__header">
       <div>
         <span class="section-label">002 / Portafolio</span>
-        <h2 class="portfolio__title">Proyectos <em>recientes</em></h2>
+        <h2 class="portfolio__title">Proyectos <strong>recientes</strong></h2>
       </div>
-
       <div class="portfolio__filter" role="group" aria-label="Filtrar proyectos">
         <button class="filter-btn filter-btn--active" data-filter="all">Todos</button>
         <button class="filter-btn" data-filter="arq">Arquitectura</button>
@@ -165,13 +164,24 @@
       </div>
     </div>
 
-    <!-- Las tarjetas se generan desde js/portfolio.js -->
-    <div class="portfolio__grid" id="portfolio-grid"></div>
+    <!-- Pista de scroll horizontal — tarjetas generadas por js/portfolio.js -->
+    <div class="portfolio__track-wrap">
+      <div class="portfolio__track" id="portfolio-track" role="list"></div>
+    </div>
+
+    <!-- Navegación de la pista -->
+    <div class="portfolio__nav">
+      <div class="portfolio__progress">
+        <div class="portfolio__progress-bar" id="portfolio-progress-bar"></div>
+      </div>
+      <div class="portfolio__arrows">
+        <button class="portfolio__arrow" id="arrow-prev" aria-label="Anterior">←</button>
+        <button class="portfolio__arrow" id="arrow-next" aria-label="Siguiente">→</button>
+      </div>
+    </div>
 
     <div class="portfolio__more">
-      <a href="#contacto" class="btn-outline">
-        Ver todos los proyectos <span>→</span>
-      </a>
+      <a href="#contacto" class="btn btn--outline">Ver todos los proyectos &nbsp;→</a>
     </div>
 
   </section>
@@ -184,7 +194,7 @@
     <div class="servicios__header">
       <div>
         <span class="section-label">003 / Servicios</span>
-        <h2 class="servicios__title">Lo que <em>hacemos</em></h2>
+        <h2 class="servicios__title">Lo que <strong>hacemos</strong></h2>
       </div>
     </div>
 
@@ -261,7 +271,7 @@
     <!-- Cita filosófica central -->
     <div class="nosotros__quote">
       <p class="nosotros__quote-text">
-        Creemos que los espacios bien diseñados tienen el poder de <em>transformar</em> la vida de las personas.
+        Creemos que los espacios bien diseñados tienen el poder de <em>transformar</em> la vida de las <strong>personas</strong>.
       </p>
       <span class="nosotros__quote-author">— Estudio Landa, filosofía de diseño</span>
     </div>
@@ -287,7 +297,7 @@
       <div class="nosotros__content">
         <div>
           <span class="section-label">004 / Nosotros</span>
-          <h2 class="nosotros__title">Diseño con <em>propósito</em></h2>
+          <h2 class="nosotros__title">Diseño con <em>propósito</em> <strong>.</strong></h2>
         </div>
 
         <div class="nosotros__body">
@@ -332,7 +342,7 @@
     <div class="contacto__header">
       <span class="section-label">005 / Contacto</span>
       <h2 class="contacto__title">
-        Hablemos de<br>tu <em>proyecto.</em>
+        <strong>Hablemos</strong> de<br>tu <em>proyecto.</em>
       </h2>
     </div>
 
