@@ -110,8 +110,8 @@
 /* Estadísticas flotantes */
 .nosotros__stats {
   position: absolute;
-  bottom: -var(--sp-lg);
-  left: -var(--sp-lg);
+  bottom: calc(-1 * var(--sp-lg));
+  left: calc(-1 * var(--sp-lg));
   background: var(--color-dark);
   color: var(--color-bg);
   padding: var(--sp-md) var(--sp-lg);
