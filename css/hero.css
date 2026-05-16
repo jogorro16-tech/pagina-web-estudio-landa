@@ -53,14 +53,10 @@
   transform: translateY(105%);
 }
 
-/* La palabra que va en negrita */
+/* La palabra que va en negrita — negro puro */
 .hero__title-line--bold span {
   font-weight: var(--w-bold);
-}
-
-/* La palabra en color acento */
-.hero__title-line--accent span {
-  color: var(--color-accent);
+  color: var(--color-dark);
 }
 
 /* Subtítulo */

@@ -7,9 +7,21 @@
   let lastScroll = 0;
   let isMenuOpen = false;
 
+  /* Pills amarillas — opacidad desaparece en los primeros 400px de scroll */
+  const navLinks = document.querySelectorAll('.nav__link');
+  function updatePillOpacity (scrollY) {
+    const opacity = Math.max(0, 0.72 * (1 - scrollY / 400));
+    navLinks.forEach(link => {
+      link.style.backgroundColor = `rgba(240, 210, 50, ${opacity.toFixed(3)})`;
+    });
+  }
+  updatePillOpacity(0);
+
   /* Scroll: ocultar nav al bajar, mostrar al subir */
   window.addEventListener('scroll', () => {
     const current = window.scrollY;
+
+    updatePillOpacity(current);
 
     if (current > 80) {
       nav.classList.add('nav--scrolled');
