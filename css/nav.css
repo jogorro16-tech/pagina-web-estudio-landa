@@ -25,12 +25,12 @@
 .nav__logo {
   display: flex;
   align-items: center;
-  height: 32px;
+  height: 72px;
   flex-shrink: 0;
 }
 
 .nav__logo svg {
-  height: 32px;
+  height: 72px;
   width: auto;
 }
 
