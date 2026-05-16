@@ -110,19 +110,24 @@
       </a>
     </div>
 
-    <!-- Panel derecho: imagen -->
+    <!-- Panel derecho: imagen de portada -->
+    <!-- ╔══════════════════════════════════════════════════════════╗
+         ║  IMAGEN DE PORTADA — cómo cambiarla:                   ║
+         ║  1. Ve a: assets/images/hero/                          ║
+         ║  2. Reemplaza el archivo "portada.jpeg" con tu foto    ║
+         ║  3. Guarda con el mismo nombre y recarga la página     ║
+         ╚══════════════════════════════════════════════════════════╝ -->
     <div class="hero__visual">
       <div class="hero__image">
-        <!-- Reemplazar con: <img src="assets/images/hero.jpg" alt="Proyecto destacado"> -->
-        <div class="hero__image-placeholder" style="
-          width:100%; height:100%;
-          background: linear-gradient(160deg, #D8CFC4 0%, #B0A496 40%, #8A7E74 100%);
-          display:flex; align-items:flex-end; justify-content:flex-start;
-          padding: 2rem;
-        ">
-          <span style="font-family:'Cormorant',serif; font-size:1rem; color:rgba(255,255,255,0.3); letter-spacing:0.2em; text-transform:uppercase;">
-            — Foto del proyecto aquí
-          </span>
+        <img
+          id="hero-portada"
+          src="assets/images/hero/portada.jpeg"
+          alt="Proyecto destacado — Estudio Landa"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <!-- Fallback si no hay imagen todavía -->
+        <div class="hero__image-placeholder" style="display:none;
+          background: linear-gradient(160deg, #C8CCС8 0%, #98A498 40%, #7A8C7A 100%);">
         </div>
       </div>
 
