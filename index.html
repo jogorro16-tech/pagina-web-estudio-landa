@@ -354,7 +354,16 @@
     <div class="contacto__grid">
 
       <!-- Formulario -->
-      <form class="contacto__form" id="contact-form" name="contacto" netlify>
+      <form class="contacto__form" id="contact-form"
+            action="https://api.web3forms.com/submit"
+            method="POST">
+
+        <!-- Reemplaza YOUR_ACCESS_KEY con tu key de web3forms.com -->
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+        <input type="hidden" name="subject" value="Nuevo contacto — Estudio Landa">
+        <input type="hidden" name="from_name" value="Estudio Landa Web">
+        <input type="checkbox" name="botcheck" style="display:none">
+
         <div class="form-group">
           <label class="form-label" for="nombre">Nombre</label>
           <input class="form-input" id="nombre" name="nombre" type="text" placeholder="Tu nombre completo" required>
