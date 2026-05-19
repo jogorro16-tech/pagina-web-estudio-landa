@@ -5,6 +5,8 @@
   /* ── Proyectos completos ────────────────────────────────────────────────── */
   /* Para conectar imagen: cambia img: null  por  img: 'assets/images/proyectos/SLUG/hero.jpg' */
   const proyectos = [
+    /* ── Destacado ── */
+    { slug: 'casa-huertas-del-carmen',      nombre: 'Casa Huertas del Carmen',             subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2018', tamaño: 'large',  img: 'assets/images/proyectos/casa-huertas-del-carmen/hero.jpg', bg: 'linear-gradient(140deg,#CACAC6 0%,#A2A4A0 100%)' },
     /* ── 2026 ── */
     { slug: 'casa-olivo',                   nombre: 'Casa Olivo',                          subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2026', tamaño: 'large',  img: null, bg: 'linear-gradient(140deg,#C6CAC4 0%,#96A094 100%)' },
     { slug: 'bohai-reserva',                nombre: 'Bohäi Reserva',                       subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2026', tamaño: 'medium', img: null, bg: 'linear-gradient(140deg,#C2C8CC 0%,#8EA4AC 100%)' },
@@ -34,7 +36,6 @@
     { slug: 'casa-tacana-a',                nombre: 'Casa Tacana A',                       subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2019', tamaño: 'square', img: 'assets/images/proyectos/casa-tacana-a/hero.png', bg: 'linear-gradient(140deg,#C8C6C0 0%,#A09E98 100%)' },
     /* ── 2018 ── */
     { slug: 'departamentos-zonte-2018',     nombre: 'Departamentos Zonté',                 subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2018', tamaño: 'wide',   img: null, bg: 'linear-gradient(140deg,#C4C6C8 0%,#9CA0A4 100%)' },
-    { slug: 'casa-huertas-del-carmen',      nombre: 'Casa Huertas del Carmen',             subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2018', tamaño: 'large',  img: 'assets/images/proyectos/casa-huertas-del-carmen/hero.jpg', bg: 'linear-gradient(140deg,#CACAC6 0%,#A2A4A0 100%)' },
   ];
 
   const track       = document.getElementById('portfolio-track');
