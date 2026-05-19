@@ -34,12 +34,8 @@
   width: auto;
 }
 
-/* Links desktop */
-.nav__links {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-lg);
-}
+/* Links desktop — ocultos (reemplazados por barra hero) */
+.nav__links { display: none; }
 
 .nav__link {
   font-size: var(--size-xs);
@@ -120,8 +116,13 @@
   color: var(--color-bg);
   opacity: 0;
   transform: translateX(40px);
-  transition: opacity var(--dur-med) var(--ease), transform var(--dur-med) var(--ease);
+  transition: opacity var(--dur-med) var(--ease), transform var(--dur-med) var(--ease),
+              color var(--dur-fast);
   line-height: 1.1;
+}
+
+.nav__mobile--open .nav__mobile-link:hover {
+  color: var(--color-yellow);
 }
 
 .nav__mobile--open .nav__mobile-link { opacity: 1; transform: translateX(0); }

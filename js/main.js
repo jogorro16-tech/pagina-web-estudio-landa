@@ -2,6 +2,35 @@
 
 (function () {
 
+  /* Indicador deslizante en barra de navegación del hero */
+  const heroEyebrow = document.querySelector('.hero--plain .hero__eyebrow');
+  const heroLinks   = heroEyebrow?.querySelectorAll('.hero__eyebrow-link');
+
+  heroLinks?.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      const er = heroEyebrow.getBoundingClientRect();
+      const lr = link.getBoundingClientRect();
+      const pct = ((lr.right - er.left) / er.width) * 100;
+      heroEyebrow.style.setProperty('--indicator-w', pct + '%');
+    });
+  });
+
+  heroEyebrow?.addEventListener('mouseleave', () => {
+    heroEyebrow.style.setProperty('--indicator-w', '0%');
+  });
+
+  /* Pestañas de inspiraciones */
+  const inspoTabs = document.querySelectorAll('.inspo-tab');
+  inspoTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      inspoTabs.forEach(t => { t.classList.remove('inspo-tab--active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('inspo-tab--active');
+      tab.setAttribute('aria-selected','true');
+      document.querySelectorAll('.inspo-panel').forEach(p => p.classList.remove('inspo-panel--active'));
+      document.getElementById('tab-' + tab.dataset.tab)?.classList.add('inspo-panel--active');
+    });
+  });
+
   /* Año actual en footer */
   const yearEls = document.querySelectorAll('[data-year]');
   yearEls.forEach(el => { el.textContent = new Date().getFullYear(); });

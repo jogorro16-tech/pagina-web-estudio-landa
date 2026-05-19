@@ -1,0 +1,134 @@
+/* ─── INTRO VISUAL — imagen con frase central ────────────────────────────── */
+
+.intro-visual {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -180px;
+}
+
+.intro-visual__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Gradiente blanco arriba */
+.intro-visual::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 280px;
+  background: linear-gradient(to bottom, var(--color-white) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Gradiente blanco abajo */
+.intro-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 260px;
+  background: linear-gradient(to top, var(--color-bg) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.intro-visual__overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100svh;
+  padding: 280px var(--gutter) 260px;
+  background: rgba(26,28,26,0.28);
+}
+
+.intro-visual__text {
+  font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+  font-weight: var(--w-bold);
+  color: var(--color-white);
+  text-align: center;
+  max-width: 660px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ─── SECTION BRIDGE — transición entre secciones con imagen ─────────────── */
+
+.section-bridge {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-bridge__bg {
+  position: absolute;
+  inset: -15%;  /* espacio extra para el parallax */
+  overflow: hidden;
+}
+
+.section-bridge__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-bridge__overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--sp-xl) var(--gutter);
+}
+
+/* Gradiente oscuro sobre la imagen del bridge */
+.section-bridge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26,28,26,0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Gradiente blanco arriba — se funde con fondo bg del portafolio */
+.section-bridge::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.section-bridge__quote {
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: var(--w-thin);
+  color: var(--color-white);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.section-bridge__quote em {
+  font-family: var(--font-main);
+  font-style: italic;
+  font-weight: var(--w-regular);
+  color: inherit;
+  background: rgba(236,229,69,0.35);
+  padding: 0.04em 0.18em;
+  border-radius: 3px;
+}

@@ -13,7 +13,7 @@
     /* ── 2025 ── */
     { slug: 'casa-aragon',                  nombre: 'Casa Aragón',                         subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2025', tamaño: 'medium', img: 'assets/images/proyectos/casa-aragon/hero.jpeg', bg: 'linear-gradient(140deg,#C8C4BC 0%,#9E9890 100%)' },
     { slug: 'casa-ikaya',                   nombre: 'Casa Ikaya',                          subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2025', tamaño: 'large',  img: null, bg: 'linear-gradient(140deg,#BECABD 0%,#8EA890 100%)' },
-    { slug: 'departamento-sophia',          nombre: 'Departamento Sophia',                 subtitulo: 'Interiorismo',                  categoria: 'int', año: '2025', tamaño: 'square', img: null, bg: 'linear-gradient(140deg,#B8C4C2 0%,#8AA0A0 100%)' },
+    { slug: 'departamento-sophia',          nombre: 'Departamento Sophia',                 subtitulo: 'Interiorismo',                  categoria: 'int', año: '2025', tamaño: 'square', img: 'assets/images/proyectos/departamento-sophia/hero.jpg', bg: 'linear-gradient(140deg,#B8C4C2 0%,#8AA0A0 100%)' },
     { slug: 'oficinas-ventas-bohai',        nombre: 'Oficinas de Ventas Inmobiliaria Bohäi', subtitulo: 'Arquitectura + Interiorismo', categoria: 'arq', año: '2025', tamaño: 'wide',   img: null, bg: 'linear-gradient(140deg,#C4C2C8 0%,#9896A4 100%)' },
     { slug: 'fraccionamiento-bohai-pedregal', nombre: 'Fraccionamiento Bohäi Pedregal',   subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2025', tamaño: 'medium', img: null, bg: 'linear-gradient(140deg,#C0C8C4 0%,#90A09C 100%)' },
     { slug: 'departamentos-tzonte-2025',    nombre: 'Departamentos Tzönte',                subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2025', tamaño: 'large',  img: null, bg: 'linear-gradient(140deg,#CAC6C0 0%,#A09C96 100%)' },
@@ -21,20 +21,20 @@
     /* Casa Aragón 2024 duplicado — si es el mismo que arriba, ignorar */
     /* ── 2023 ── */
     { slug: 'concurso-kaira-looro',         nombre: 'Concurso Kaira Looro',                subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2023', tamaño: 'wide',   img: null, bg: 'linear-gradient(140deg,#C8CCCA 0%,#98A4A8 100%)' },
-    { slug: 'oficinas-ggi',                 nombre: 'Oficinas GGI',                        subtitulo: 'Arquitectura + Interiorismo',   categoria: 'arq', año: '2023', tamaño: 'square', img: null, bg: 'linear-gradient(140deg,#C4C0B8 0%,#9C9890 100%)' },
+    { slug: 'oficinas-ggi',                 nombre: 'Oficinas GGI',                        subtitulo: 'Arquitectura + Interiorismo',   categoria: 'arq', año: '2023', tamaño: 'square', img: 'assets/images/proyectos/oficinas-ggi/hero.jpg', bg: 'linear-gradient(140deg,#C4C0B8 0%,#9C9890 100%)' },
     /* ── 2022 ── */
     { slug: 'cafe-ocampo',                  nombre: 'Café Ocampo',                         subtitulo: 'Arquitectura + Interiorismo',   categoria: 'int', año: '2022', tamaño: 'medium', img: null, bg: 'linear-gradient(140deg,#C2C8BC 0%,#90A08A 100%)' },
-    { slug: 'casa-laja-18',                 nombre: 'Casa Laja 18',                        subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2022', tamaño: 'large',  img: null, bg: 'linear-gradient(140deg,#C0C4C4 0%,#96A0A4 100%)' },
+    { slug: 'casa-laja-18',                 nombre: 'Casa Laja 18',                        subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2022', tamaño: 'large',  img: 'assets/images/proyectos/casa-laja-18/hero.jpg', bg: 'linear-gradient(140deg,#C0C4C4 0%,#96A0A4 100%)' },
     /* ── 2021 ── */
     { slug: 'casa-laja-13',                 nombre: 'Casa Laja 13',                        subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2021', tamaño: 'wide',   img: null, bg: 'linear-gradient(140deg,#C4C2BC 0%,#9A9890 100%)' },
     { slug: 'suites-pitahayas-los-cabos',   nombre: 'Suites Pitahayas Los Cabos',          subtitulo: 'Arquitectura + Interiorismo',   categoria: 'arq', año: '2021', tamaño: 'large',  img: null, bg: 'linear-gradient(140deg,#C8CAC4 0%,#A0A49E 100%)' },
     /* ── 2020 ── */
     { slug: 'casa-tacana-b',                nombre: 'Casa Tacana B',                       subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2020', tamaño: 'medium', img: null, bg: 'linear-gradient(140deg,#C6C8C4 0%,#9EA4A0 100%)' },
     /* ── 2019 ── */
-    { slug: 'casa-tacana-a',                nombre: 'Casa Tacana A',                       subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2019', tamaño: 'square', img: null, bg: 'linear-gradient(140deg,#C8C6C0 0%,#A09E98 100%)' },
+    { slug: 'casa-tacana-a',                nombre: 'Casa Tacana A',                       subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2019', tamaño: 'square', img: 'assets/images/proyectos/casa-tacana-a/hero.png', bg: 'linear-gradient(140deg,#C8C6C0 0%,#A09E98 100%)' },
     /* ── 2018 ── */
     { slug: 'departamentos-zonte-2018',     nombre: 'Departamentos Zonté',                 subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2018', tamaño: 'wide',   img: null, bg: 'linear-gradient(140deg,#C4C6C8 0%,#9CA0A4 100%)' },
-    { slug: 'casa-huertas-del-carmen',      nombre: 'Casa Huertas del Carmen',             subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2018', tamaño: 'large',  img: null, bg: 'linear-gradient(140deg,#CACAC6 0%,#A2A4A0 100%)' },
+    { slug: 'casa-huertas-del-carmen',      nombre: 'Casa Huertas del Carmen',             subtitulo: 'Arquitectura',                  categoria: 'arq', año: '2018', tamaño: 'large',  img: 'assets/images/proyectos/casa-huertas-del-carmen/hero.jpg', bg: 'linear-gradient(140deg,#CACAC6 0%,#A2A4A0 100%)' },
   ];
 
   const track       = document.getElementById('portfolio-track');

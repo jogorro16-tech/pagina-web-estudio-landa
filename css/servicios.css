@@ -7,7 +7,16 @@
   overflow: hidden;
 }
 
+/* Overlap: sube sobre el bridge anterior */
+.servicios--overlap {
+  position: relative;
+  margin-top: -120px;
+  padding-top: calc(var(--sp-2xl) + 120px);
+}
+
 .servicios__header {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -16,7 +25,7 @@
   border-bottom: 1px solid rgba(242,245,242,0.1);
 }
 
-.servicios__header .section-label { color: var(--color-sage-lt); }
+.servicios__header .section-label { background: var(--color-red); color: var(--color-white); }
 
 .servicios__title {
   font-size: var(--size-display);
@@ -28,6 +37,7 @@
 
 .servicios__title strong {
   font-weight: var(--w-bold);
+  color: var(--color-bg);
 }
 
 /* Lista */
@@ -50,11 +60,15 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(74,115,88,0.05);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-slow) var(--ease);
 }
+
+.servicio-item--arq::before  { background: var(--color-red-bg); }
+.servicio-item--int::before  { background: var(--color-sage-bg); }
+.servicio-item--inst::before { background: var(--color-yellow-bg); }
+.servicio-item--cons::before { background: rgba(61,96,128,0.08); }
 
 .servicio-item:hover::before { transform: scaleX(1); }
 .servicio-item:hover { padding-left: var(--sp-md); }
@@ -108,9 +122,26 @@
   transition: border-color var(--dur-fast), color var(--dur-fast);
 }
 
-.servicio-item:hover .servicio-item__tag {
+/* Tags: color fijo por tipo de servicio */
+.servicio-item--arq .servicio-item__tag {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  color: var(--color-white);
+}
+.servicio-item--int .servicio-item__tag {
+  background: var(--color-sage);
   border-color: var(--color-sage);
-  color: var(--color-sage-lt);
+  color: var(--color-white);
+}
+.servicio-item--inst .servicio-item__tag {
+  background: var(--color-yellow);
+  border-color: var(--color-yellow);
+  color: var(--color-dark);
+}
+.servicio-item--cons .servicio-item__tag {
+  background: var(--color-steel);
+  border-color: var(--color-steel);
+  color: var(--color-white);
 }
 
 .servicio-item__arrow {
@@ -122,7 +153,7 @@
 }
 
 .servicio-item:hover .servicio-item__arrow {
-  color: var(--color-sage-lt);
+  color: var(--color-red-lt);
   transform: translate(5px, -5px);
 }
 
