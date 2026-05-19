@@ -484,11 +484,15 @@
 .hero__card {
   position: absolute;
   right: 9%;
-  top: 55%;
+  top: 52%;
   transform: translateY(-50%) translateY(28px);
   width: clamp(260px, 28vw, 420px);
+  min-height: 34vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: #F33414;
-  padding: clamp(1.8rem, 2.5vw, 2.8rem) clamp(2rem, 2.8vw, 3rem);
+  padding: clamp(2rem, 3vw, 3rem) clamp(2rem, 2.8vw, 3rem);
   z-index: 3;
   box-shadow: 0 8px 32px rgba(243,52,20,0.22), 0 2px 8px rgba(0,0,0,0.08);
   opacity: 0;
