@@ -475,9 +475,9 @@
 }
 
 .hero__phrase-track span {
-  font-size: clamp(0.94rem, 1.25vw, 1.19rem);
+  font-size: clamp(1.03rem, 1.38vw, 1.31rem);
   font-weight: var(--w-bold);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.25em;
   line-height: 1.4;
   color: rgba(26,28,26,0.82);
   white-space: nowrap;
