@@ -480,12 +480,12 @@
   to { opacity: 1; }
 }
 
-/* Tarjeta editorial — capa frontal */
+/* Tarjeta editorial — centrada horizontal y vertical */
 .hero__card {
   position: absolute;
-  right: 9%;
-  top: 52%;
-  transform: translateY(-50%) translateY(28px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateY(28px);
   width: clamp(260px, 28vw, 420px);
   min-height: 34vh;
   display: flex;
@@ -500,7 +500,7 @@
 }
 
 @keyframes card-slide-in {
-  to { opacity: 1; transform: translateY(-50%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 .hero__card-text {
