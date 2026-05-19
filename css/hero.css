@@ -402,42 +402,53 @@
   overflow: hidden;
 }
 
-/* Eyebrow — barra amarilla superior */
+/* Eyebrow — barra transparente superior */
 .hero--editorial .hero__eyebrow {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(2rem, 5vw, 5rem);
-  padding: 0.65rem var(--gutter);
-  background: var(--color-yellow);
+  padding: 0.9rem var(--gutter);
+  background: transparent;
   position: relative;
-  overflow: hidden;
   flex-shrink: 0;
   width: 100%;
 }
 
-.hero--editorial .hero__eyebrow::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  height: 2px;
-  width: var(--indicator-w, 0%);
-  background: var(--color-dark);
-  transition: width 0.4s var(--ease);
-  pointer-events: none;
-}
+.hero--editorial .hero__eyebrow::after { display: none; }
 
 .hero--editorial .hero__eyebrow-link {
   background: transparent;
   border-color: transparent;
-  padding: 0.1rem 0;
+  padding: 0.15rem 0;
   border-radius: 0;
-  font-weight: var(--w-semi);
-  transition: color var(--dur-fast), opacity var(--dur-fast);
+  font-weight: var(--w-medium);
+  color: var(--color-dark);
+  letter-spacing: 0.12em;
+  position: relative;
+  transition: letter-spacing 0.3s ease, opacity 0.3s ease;
 }
 
-.hero--editorial .hero__eyebrow:hover .hero__eyebrow-link { opacity: 1; color: rgba(26,28,26,0.45); }
-.hero--editorial .hero__eyebrow .hero__eyebrow-link:hover  { opacity: 1; color: var(--color-dark); font-weight: var(--w-bold); }
+/* Subrayado animado de izquierda a derecha */
+.hero--editorial .hero__eyebrow-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 100%; height: 1px;
+  background: var(--color-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.hero--editorial .hero__eyebrow-link:hover {
+  letter-spacing: 0.18em;
+  opacity: 0.7;
+}
+
+.hero--editorial .hero__eyebrow-link:hover::after {
+  transform: scaleX(1);
+}
 
 /* Texto fantasma — capa posterior */
 .hero__ghost {
@@ -448,16 +459,22 @@
   display: flex;
   flex-direction: column;
   font-size: clamp(88px, 18vw, 260px);
-  font-weight: var(--w-bold);
   letter-spacing: -0.05em;
   line-height: 0.88;
-  color: rgba(26,28,26,0.09);
+  color: rgba(26,28,26,0.90);
   pointer-events: none;
   user-select: none;
   z-index: 0;
   opacity: 0;
   animation: ghost-fade-in 1.8s 0.15s ease-out forwards;
 }
+
+/* "Espacios" y "que" → peso light */
+.hero__ghost span:nth-child(1),
+.hero__ghost span:nth-child(2) { font-weight: var(--w-thin); }
+
+/* "inspiran." → extra bold para contraste */
+.hero__ghost span:nth-child(3) { font-weight: var(--w-black); }
 
 @keyframes ghost-fade-in {
   to { opacity: 1; }
@@ -470,10 +487,10 @@
   top: 55%;
   transform: translateY(-50%) translateY(28px);
   width: clamp(260px, 28vw, 420px);
-  background: #C8614E;
+  background: #F33414;
   padding: clamp(1.8rem, 2.5vw, 2.8rem) clamp(2rem, 2.8vw, 3rem);
-  z-index: 2;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+  z-index: 3;
+  box-shadow: 0 8px 32px rgba(243,52,20,0.22), 0 2px 8px rgba(0,0,0,0.08);
   opacity: 0;
   animation: card-slide-in 1s 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
 }
