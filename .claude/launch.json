@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "estudio-landa",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "3456"],
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/Users/maria/Documents/Pagina Web estudio Landa/pagina-web-estudio-landa", "-p", "3456"],
       "port": 3456
     }
   ]
