@@ -366,6 +366,61 @@
   transform: translateX(0);
 }
 
+/* ── Variante overlay: imagen full-width, texto encima ───────────────────── */
+.proj-feat--overlay {
+  display: block;
+  position: relative;
+  min-height: 80vh;
+}
+
+.proj-feat--overlay .proj-feat__image {
+  position: absolute;
+  inset: 0;
+}
+
+/* Gradiente superior para legibilidad del texto sobre el cielo */
+.proj-feat--overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(26,28,26,0.52) 0%,
+    rgba(26,28,26,0.15) 45%,
+    transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.proj-feat--overlay .proj-feat__text {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 2;
+  border-left: none;
+  padding: var(--sp-xl) var(--gutter) var(--sp-xl);
+}
+
+.proj-feat--overlay .proj-feat__num {
+  color: rgba(242,245,242,0.18);
+}
+
+.proj-feat--overlay .proj-feat__tag {
+  color: var(--color-yellow);
+}
+
+.proj-feat--overlay .proj-feat__year {
+  color: rgba(242,245,242,0.55);
+  opacity: 1;
+}
+
+.proj-feat--overlay .proj-feat__name {
+  color: var(--color-white);
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+.proj-feat--overlay .proj-feat__cta {
+  color: rgba(242,245,242,0.7);
+}
+
 /* ── 02. Dúo: dos proyectos en fila ────────────────────────────────────── */
 .proj-duo {
   display: grid;
