@@ -269,11 +269,11 @@
   padding: 0.1rem 0;
   border-radius: 0;
   font-weight: var(--w-semi);
-  transition: opacity var(--dur-fast);
+  transition: color var(--dur-fast), opacity var(--dur-fast);
 }
 
-.hero--plain .hero__eyebrow:hover .hero__eyebrow-link { opacity: 0.55; }
-.hero--plain .hero__eyebrow .hero__eyebrow-link:hover  { opacity: 1; font-weight: var(--w-bold); }
+.hero--plain .hero__eyebrow:hover .hero__eyebrow-link { opacity: 1; color: rgba(26,28,26,0.45); }
+.hero--plain .hero__eyebrow .hero__eyebrow-link:hover  { opacity: 1; color: var(--color-dark); font-weight: var(--w-bold); }
 
 /* Panel izquierdo: título grande, alineado al fondo */
 .hero--plain .hero__text {
@@ -305,11 +305,11 @@
 }
 
 .hero__desc-text {
-  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  font-size: clamp(1rem, 1.55vw, 1.45rem);
   font-weight: var(--w-bold);
   line-height: 1.2;
   color: var(--color-dark);
-  max-width: 260px;
+  max-width: 320px;
 }
 
 /* Ocultar elementos que no aplican */
