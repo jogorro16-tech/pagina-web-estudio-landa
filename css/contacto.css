@@ -25,9 +25,10 @@
 }
 
 /* Header */
-.contacto__header { margin-bottom: var(--sp-xl); }
+.contacto__header { position: relative; overflow: hidden; margin-bottom: var(--sp-xl); }
 
-.contacto__header .section-label { color: var(--color-sage-lt); }
+.contacto__header .section-label { background: var(--color-white); color: var(--color-dark); }
+.contacto__title strong { color: var(--color-white); }
 
 .contacto__title {
   font-size: clamp(3rem, 8vw, 8rem);
@@ -41,10 +42,13 @@
 .contacto__title strong { font-weight: var(--w-bold); }
 
 .contacto__title em {
-  font-family: var(--font-serif);
+  font-family: var(--font-main);
   font-style: italic;
-  color: var(--color-sage-lt);
+  color: inherit;
   font-weight: var(--w-regular);
+  background: rgba(236,229,69,0.28);
+  padding: 0.04em 0.18em;
+  border-radius: 3px;
 }
 
 /* Grid 2 columnas */

@@ -15,14 +15,21 @@
   /* Líneas y bordes */
   --color-border:    rgba(26,28,26,0.1);
   /* Verde salvia — acento principal */
-  --color-sage:      #4A7358;
-  --color-sage-lt:   #7FAF90;
-  --color-sage-bg:   rgba(74,115,88,0.08);
+  --color-sage:      #82B39B;
+  --color-sage-lt:   #A8CCBB;
+  --color-sage-bg:   rgba(130,179,155,0.12);
   /* Azul acero — acento secundario */
-  --color-steel:     #3D6080;
-  --color-steel-lt:  #7AAAC8;
-  /* Acento activo (cambiar entre sage / steel) */
-  --color-accent:    var(--color-sage);
+  --color-steel:     #2C5A8E;
+  --color-steel-lt:  #5A8EC8;
+  /* Rojo — acento vibrante */
+  --color-red:       #F33414;
+  --color-red-lt:    #F76650;
+  --color-red-bg:    rgba(243,52,20,0.08);
+  /* Amarillo — acento editorial */
+  --color-yellow:    #ECE545;
+  --color-yellow-bg: rgba(236,229,69,0.18);
+  /* Acento activo */
+  --color-accent:    var(--color-red);
 
   /* ── Tipografía ────────────────────────────────────────────────────────── */
   /* Hanken Grotesk = HK Grotesk (Google Fonts) */

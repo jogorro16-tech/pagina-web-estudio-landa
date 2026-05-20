@@ -46,11 +46,19 @@
   opacity: 0.6;
 }
 
-.filter-btn:hover,
-.filter-btn--active {
+.filter-btn:hover {
   color: var(--color-dark);
   opacity: 1;
-  border-color: var(--color-accent);
+  border-color: transparent;
+}
+
+.filter-btn--active {
+  background: var(--color-red);
+  color: var(--color-white);
+  opacity: 1;
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  border-color: transparent;
 }
 
 /* ── Scroll horizontal tipo Floema ───────────────────────────────────────── */
@@ -215,23 +223,516 @@
   border-color: var(--color-dark);
 }
 
-/* ── Grid estático (mobile fallback y vista "todos") ─────────────────────── */
+/* ── Grid 4×4 de proyectos ───────────────────────────────────────────────── */
 .portfolio__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-sm);
-  padding: 0 var(--gutter);
+  grid-template-columns: repeat(4, 1fr);
+  border-left: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
-/* Botón ver más */
-.portfolio__more {
-  text-align: center;
-  margin-top: var(--sp-xl);
-  padding: 0 var(--gutter);
+.grid-cell {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  cursor: none;
+  background: var(--color-surface);
+}
+
+.grid-cell__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  transition: transform 1.2s var(--ease), opacity 0.4s ease;
+}
+
+.grid-cell__placeholder {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Número del proyecto — siempre visible */
+.grid-cell__num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.04em;
+  color: rgba(26,28,26,0.18);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  user-select: none;
+  line-height: 1;
+}
+
+/* Nombre — aparece en hover */
+.grid-cell__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,28,26,0.82) 0%, rgba(26,28,26,0.2) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--sp-md);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+  z-index: 2;
+}
+
+.grid-cell:hover .grid-cell__overlay { opacity: 1; }
+.grid-cell:hover .grid-cell__num { opacity: 0; }
+.grid-cell:hover .grid-cell__img { transform: scale(1); }
+
+.grid-cell__name {
+  font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+  font-weight: var(--w-light);
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+.grid-cell__year {
+  font-size: var(--size-xs);
+  color: rgba(255,255,255,0.45);
+  margin-top: 0.25rem;
+}
+
+/* ── Lightbox ────────────────────────────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,28,26,0.96);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox__inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+}
+
+.lightbox__img {
+  max-width: 80vw;
+  max-height: 85vh;
+  object-fit: contain;
+  display: block;
+  border: none;
+}
+
+.lightbox__placeholder {
+  width: 70vw;
+  max-width: 900px;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__info {
+  position: absolute;
+  bottom: -3rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lightbox__title {
+  font-size: var(--size-sm);
+  font-weight: var(--w-light);
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.04em;
+}
+
+.lightbox__counter {
+  font-size: var(--size-xs);
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.1em;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: var(--sp-lg);
+  right: var(--sp-lg);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 1.4rem;
+  transition: color var(--dur-fast);
+  cursor: none;
+  z-index: 1001;
+}
+
+.lightbox__close:hover { color: var(--color-white); }
+
+.lightbox__arrow {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.45);
+  font-size: 1.2rem;
+  transition: color var(--dur-fast);
+  cursor: none;
+  flex-shrink: 0;
+}
+
+.lightbox__arrow:hover { color: var(--color-white); }
+
+@media (max-width: 900px) {
+  .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
+  .grid-cell { aspect-ratio: 1/1; }
+}
+
+/* ── Header rediseñado ───────────────────────────────────────────────────── */
+.portfolio__header {
+  position: relative;
+  overflow: hidden;
+  padding: var(--sp-xl) var(--gutter) var(--sp-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.portfolio__title {
+  margin-top: var(--sp-sm);
+  font-size: var(--size-display);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* ── Sección "todos" con filtros ─────────────────────────────────────────── */
+.portfolio__all {
+  padding-top: var(--sp-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.portfolio__all-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter) var(--sp-lg);
+}
+
+.portfolio__all-label {
+  font-size: var(--size-xs);
+  font-weight: var(--w-medium);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-mid);
+  opacity: 0.5;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LAYOUT EDITORIAL — proyectos destacados
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.portfolio__editorial {
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── 01. Featured: imagen ancha · texto en columna ───────────────────────── */
+.proj-feat {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  min-height: 80vh;
+  border-bottom: 1px solid var(--color-border);
+  cursor: none;
+  overflow: hidden;
+}
+
+.proj-feat__image {
+  position: relative;
+  overflow: hidden;
+}
+
+.proj-feat__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  transition: transform 1.4s var(--ease);
+}
+
+.proj-feat:hover .proj-feat__image img {
+  transform: scale(1);
+}
+
+.proj-feat__text {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-xl) var(--gutter);
+  border-left: 1px solid var(--color-border);
+}
+
+.proj-feat__num {
+  font-size: clamp(5rem, 12vw, 11rem);
+  font-weight: var(--w-thin);
+  color: var(--color-border);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: auto;
+}
+
+.proj-feat__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-sm);
+}
+
+.proj-feat__tag {
+  font-size: var(--size-xs);
+  font-weight: var(--w-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.proj-feat__year {
+  font-size: var(--size-xs);
+  color: var(--color-mid);
+  opacity: 0.5;
+}
+
+.proj-feat__name {
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--color-dark);
+  margin-bottom: var(--sp-md);
+}
+
+.proj-feat__cta {
+  font-size: var(--size-xs);
+  font-weight: var(--w-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-mid);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity var(--dur-med) var(--ease), transform var(--dur-med) var(--ease);
+}
+
+.proj-feat:hover .proj-feat__cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Variante overlay: imagen full-width, texto encima ───────────────────── */
+.proj-feat--overlay {
+  display: block;
+  position: relative;
+  min-height: 80vh;
+}
+
+.proj-feat--overlay .proj-feat__image {
+  position: absolute;
+  inset: 0;
+}
+
+/* Gradiente superior para legibilidad del texto sobre el cielo */
+.proj-feat--overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(26,28,26,0.52) 0%,
+    rgba(26,28,26,0.15) 45%,
+    transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.proj-feat--overlay .proj-feat__text {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 2;
+  border-left: none;
+  padding: var(--sp-xl) var(--gutter) var(--sp-xl);
+}
+
+.proj-feat--overlay .proj-feat__num {
+  color: rgba(242,245,242,0.18);
+}
+
+.proj-feat--overlay .proj-feat__tag {
+  color: var(--color-yellow);
+}
+
+.proj-feat--overlay .proj-feat__year {
+  color: rgba(242,245,242,0.55);
+  opacity: 1;
+}
+
+.proj-feat--overlay .proj-feat__name {
+  color: var(--color-white);
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+.proj-feat--overlay .proj-feat__cta {
+  color: rgba(242,245,242,0.7);
+}
+
+/* ── 02. Dúo: dos proyectos en fila ────────────────────────────────────── */
+.proj-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.proj-duo__item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  border-right: 1px solid var(--color-border);
+  cursor: none;
+}
+
+.proj-duo__item:last-child { border-right: none; }
+
+.proj-duo__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  transition: transform 1.4s var(--ease);
+}
+
+.proj-duo__item:hover img { transform: scale(1); }
+
+.proj-duo__caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: var(--sp-md);
+  background: linear-gradient(to top, rgba(26,28,26,0.75) 0%, transparent 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.proj-duo__name {
+  font-size: clamp(1.1rem, 2.5vw, 2rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  line-height: 1.1;
+}
+
+.proj-duo__year {
+  font-size: var(--size-xs);
+  color: rgba(255,255,255,0.5);
+  flex-shrink: 0;
+}
+
+/* ── 03. Strip: ancho completo ──────────────────────────────────────────── */
+.proj-strip {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 21/7;
+  cursor: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.proj-strip__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  transition: transform 1.4s var(--ease);
+}
+
+.proj-strip:hover .proj-strip__img { transform: scale(1); }
+
+.proj-strip__caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: var(--sp-md) var(--gutter);
+  background: linear-gradient(to top, rgba(26,28,26,0.65) 0%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-md);
+}
+
+.proj-strip__num {
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.12);
+  line-height: 1;
+}
+
+.proj-strip__name {
+  font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.04em;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.proj-strip__year {
+  font-size: var(--size-xs);
+  color: rgba(255,255,255,0.5);
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+/* ── Responsive editorial ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .proj-feat {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .proj-feat__image { aspect-ratio: 4/3; }
+  .proj-feat__text  { border-left: none; border-top: 1px solid var(--color-border); }
+  .proj-feat__num   { display: none; }
+  .proj-strip { aspect-ratio: 16/7; }
+}
+
+@media (max-width: 600px) {
+  .proj-duo { grid-template-columns: 1fr; }
+  .proj-duo__item { border-right: none; border-bottom: 1px solid var(--color-border); }
+  .proj-strip { aspect-ratio: 4/3; }
 }
 
 @media (max-width: 768px) {
-  .portfolio__header { flex-direction: column; align-items: flex-start; gap: var(--sp-md); }
-  .portfolio__grid { grid-template-columns: 1fr; }
+  .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
   .project-card--large, .project-card--medium { width: 85vw; }
+}
+
+@media (max-width: 480px) {
+  .grid-cell { aspect-ratio: 1/1; }
+  .grid-cell__name { font-size: 0.75rem; }
+  .portfolio__filter { gap: var(--sp-sm); }
 }
