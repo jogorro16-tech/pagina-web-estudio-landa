@@ -467,35 +467,44 @@
   pointer-events: none;
 }
 
-/* Tamaño de fuente compartido para los tres renglones */
-.hero__statement-landa,
-.hero__statement-es,
-.hero__words-container {
+/* ── Renglón 1: "landa es" ───────────────────────────────────────────────── */
+.hero__statement-line1 {
   display: block;
-  font-size: clamp(3.2rem, 7.5vw, 10rem);
-  letter-spacing: -0.04em;
-  line-height: 0.95;
+  margin: 0;
+  line-height: 1;
+  /* baseline-alignment natural entre los dos spans */
+}
+
+/* "landa" — bold y 50 % más grande que "es" */
+.hero__statement-landa {
+  font-size: clamp(4.5rem, 9vw, 12rem);
+  font-weight: var(--w-bold);
+  letter-spacing: -0.05em;
   color: var(--color-dark);
   user-select: none;
+  vertical-align: baseline;
 }
 
-/* Renglón 1 — bold */
-.hero__statement-landa {
-  font-weight: var(--w-bold);
-}
-
-/* Renglón 2 — light */
+/* "es" — peso normal, base de la jerarquía */
 .hero__statement-es {
-  font-weight: var(--w-light);
-  margin-top: 0.05em;
+  font-size: clamp(3rem, 6vw, 8rem);   /* 2/3 de landa = base */
+  font-weight: var(--w-regular);
+  letter-spacing: -0.04em;
+  color: var(--color-dark);
+  user-select: none;
+  vertical-align: baseline;
 }
 
-/* Renglón 3 — contenedor relativo para las frases absolutas */
+/* ── Renglón 2: frases rotantes ─────────────────────────────────────────── */
+
+/* Contenedor — hereda el tamaño de frase (75 % de "es") */
 .hero__words-container {
+  display: block;
   position: relative;
-  margin-top: 0.05em;
-  height: 1em;                /* reserva una línea; las frases son absolute */
-  overflow: visible;          /* permite que las frases salgan izq / der */
+  font-size: clamp(2.25rem, 4.5vw, 6rem);  /* 75 % del base "es" */
+  height: 1.1em;
+  margin-top: 0.25em;
+  overflow: visible;
 }
 
 /* Frase individual — JS controla transform y opacity */
@@ -507,7 +516,7 @@
   font-size: 1em;
   font-weight: var(--w-light);
   letter-spacing: -0.04em;
-  line-height: 0.95;
+  line-height: 1;
   color: var(--color-dark);
   opacity: 0;
   visibility: hidden;
@@ -536,11 +545,9 @@
     right: 0;
   }
 
-  .hero__statement-landa,
-  .hero__statement-es,
-  .hero__words-container {
-    font-size: clamp(2.4rem, 7.5vw, 6rem);
-  }
+  .hero__statement-landa  { font-size: clamp(3.2rem, 7vw, 8rem); }
+  .hero__statement-es     { font-size: clamp(2.1rem, 4.7vw, 5.3rem); }
+  .hero__words-container  { font-size: clamp(1.6rem, 3.5vw, 4rem); }
 }
 
 @media (max-width: 600px) {
@@ -556,9 +563,7 @@
     flex-shrink: 0;
   }
 
-  .hero__statement-landa,
-  .hero__statement-es,
-  .hero__words-container {
-    font-size: clamp(1.8rem, 9vw, 3rem);
-  }
+  .hero__statement-landa  { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .hero__statement-es     { font-size: clamp(1.6rem, 7.3vw, 2.7rem); }
+  .hero__words-container  { font-size: clamp(1.2rem, 5.5vw, 2rem); }
 }
