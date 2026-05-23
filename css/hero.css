@@ -188,7 +188,7 @@
   font-weight: var(--w-light);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-mid);
+  color: rgba(242,245,242,0.5);
 }
 
 .hero__scroll-line {
@@ -395,7 +395,7 @@
 /* ── Hero variante en capas — composición editorial tipo revista ──────────── */
 
 .hero--editorial {
-  background: var(--color-bg);
+  background: var(--color-dark);
   display: flex;
   flex-direction: column;
   min-height: 100svh;
@@ -425,7 +425,7 @@
   padding: 0.15rem 0;
   border-radius: 0;
   font-weight: var(--w-medium);
-  color: var(--color-dark);
+  color: var(--color-white);
   letter-spacing: 0.12em;
   position: relative;
   transition: letter-spacing 0.3s ease, opacity 0.3s ease;
@@ -437,7 +437,7 @@
   position: absolute;
   bottom: -1px; left: 0;
   width: 100%; height: 1px;
-  background: var(--color-dark);
+  background: var(--color-white);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -480,7 +480,7 @@
   font-size: clamp(4.5rem, 9vw, 12rem);
   font-weight: var(--w-bold);
   letter-spacing: -0.05em;
-  color: var(--color-dark);
+  color: var(--color-white);
   user-select: none;
   vertical-align: baseline;
 }
@@ -490,7 +490,7 @@
   font-size: clamp(3rem, 6vw, 8rem);   /* 2/3 de landa = base */
   font-weight: var(--w-regular);
   letter-spacing: -0.04em;
-  color: var(--color-dark);
+  color: var(--color-white);
   user-select: none;
   vertical-align: baseline;
 }
@@ -517,7 +517,7 @@
   font-weight: var(--w-light);
   letter-spacing: -0.04em;
   line-height: 1;
-  color: var(--color-dark);
+  color: var(--color-white);
   opacity: 0;
   visibility: hidden;
   will-change: transform, opacity;
