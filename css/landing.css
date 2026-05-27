@@ -73,7 +73,7 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
 }
 
 .l-nav__logo svg {
-  height: 36px;
+  height: 47px;
   width: auto;
   fill: var(--color-dark);
   display: block;
@@ -126,7 +126,7 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
   position: relative;
   height: clamp(1.6rem, 3.2vw, 4.2rem);
   font-size: clamp(1.2rem, 2.4vw, 3.2rem);
-  margin-top: 0.18em;
+  margin-top: -0.18em;
   overflow: visible;
 }
 
@@ -161,26 +161,70 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
   width: 60%;
   height: 100%;
   max-height: 100%;
-  overflow: hidden;
-  transform: scale(0.06);
+  /* Scroll horizontal de imágenes */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 3px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Aparición editorial: fade + subida suave */
   opacity: 0;
+  transform: translateY(12px);
   transition:
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity   0.4s  ease;
+    opacity   0.55s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.l-featured__frame::-webkit-scrollbar { display: none; }
 
 .l-featured__frame.is-visible {
-  transform: scale(1);
   opacity: 1;
+  transform: translateY(0);
 }
 
-.l-featured__frame img,
+/* Cada imagen mantiene su proporción natural */
+.l-featured__frame img {
+  flex-shrink: 0;
+  height: 100%;
+  width: auto;
+  display: block;
+  scroll-snap-align: start;
+}
+
+/* Placeholder degradado: ocupa todo el ancho */
 .l-featured__frame .l-featured__bg {
+  flex-shrink: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+  scroll-snap-align: start;
 }
+
+/* ── Indicador de imágenes (líneas) ─────────────────────────────────────── */
+
+.l-featured__indicator {
+  width: 60%;
+  display: flex;
+  gap: 4px;
+  align-items: stretch;
+}
+
+.l-indicator__seg {
+  flex: 1;
+  height: 1px;
+  background: rgba(26,28,26,0.15);
+  transition: background 0.3s ease;
+}
+
+.l-indicator__seg--active {
+  background: var(--color-dark);
+}
+
+@media (max-width: 768px) { .l-featured__indicator { width: 88%; } }
+@media (max-width: 480px) { .l-featured__indicator { width: 96%; } }
 
 .l-featured__label {
   font-size: 0.72rem;
@@ -218,9 +262,12 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
   cursor: pointer;
   position: relative;
   transition: transform 0.2s var(--ease);
+  outline: none;
 }
 
 .l-thumb:hover { transform: scale(1.08); }
+.l-thumb:focus,
+.l-thumb:focus-visible { outline: none !important; box-shadow: none !important; }
 
 .l-thumb img,
 .l-thumb__bg {
@@ -232,31 +279,48 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
   transition: filter 0.5s ease;
 }
 
-/* Flash rojo → color al hacer hover */
-.l-thumb:hover img,
-.l-thumb:hover .l-thumb__bg {
-  animation: thumb-flash 0.65s ease forwards;
-}
-
-@keyframes thumb-flash {
-  0%   { filter: grayscale(100%); }
-  42%  { filter: grayscale(0%) sepia(1) saturate(8) hue-rotate(-20deg) brightness(0.8); }
-  100% { filter: grayscale(0%); }
-}
-
 /* Miniatura activa: permanece en color */
 .l-thumb--active img,
 .l-thumb--active .l-thumb__bg {
   filter: grayscale(0%);
-  animation: none;
 }
 
-.l-thumb--active::after {
-  content: '';
+/* ── Ícono semilla sobre la miniatura ───────────────────────────────────── */
+
+.l-thumb__icon {
   position: absolute;
   inset: 0;
-  box-shadow: inset 0 0 0 2px var(--color-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transition: opacity 0.28s ease;
   pointer-events: none;
+  z-index: 2;
+}
+
+.l-thumb:hover .l-thumb__icon   { opacity: 1; }
+.l-thumb--active .l-thumb__icon { opacity: 1; }
+
+/* SVG: contorno blanco por defecto (hover) */
+.l-thumb__icon svg {
+  width: 52%;
+  height: 52%;
+}
+
+.l-thumb__icon svg path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 18;
+  stroke-linejoin: round;
+  transition: fill 0.22s ease, stroke 0.22s ease;
+}
+
+/* Activo: semilla rellena */
+.l-thumb--active .l-thumb__icon svg path {
+  fill: #fff;
+  stroke: none;
 }
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */

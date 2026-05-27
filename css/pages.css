@@ -1,0 +1,220 @@
+/* ─── PÁGINAS INTERIORES — nav compartido + reset ─────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  font-weight: var(--w-light);
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  cursor: auto;
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { background: none; border: none; cursor: pointer; font-family: inherit; }
+ul, ol { list-style: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-main);
+  font-weight: var(--w-thin);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+}
+
+p {
+  font-weight: var(--w-light);
+  line-height: 1.75;
+  font-size: var(--size-base);
+  color: var(--color-mid);
+}
+
+em    { font-style: italic; }
+strong { font-weight: var(--w-bold); color: var(--color-dark); }
+
+::selection { background: var(--color-red); color: var(--color-white); }
+
+/* ── Etiqueta de sección ─────────────────────────────────────────────────── */
+.section-label {
+  font-size: var(--size-xs);
+  font-weight: var(--w-medium);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-sage);
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 2px;
+  margin-bottom: var(--sp-sm);
+}
+
+/* ── Tag / chip ─────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--size-xs);
+  font-weight: var(--w-medium);
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  background: var(--color-surface);
+}
+
+.tag--red {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+/* ── Número fantasma (legacy) ───────────────────────────────────────────── */
+.ghost-num {
+  position: absolute;
+  right: -0.02em;
+  bottom: -0.15em;
+  font-size: clamp(8rem, 22vw, 22rem);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.06em;
+  line-height: 1;
+  color: rgba(26,28,26,0.07);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.ghost-num--light { color: rgba(242,245,242,0.10); }
+
+/* ── Encabezado editorial de sección ────────────────────────────────────── */
+
+.page-header {
+  overflow: hidden;        /* corta el "0" que sobresale por la izquierda */
+  padding-top: var(--sp-md);
+}
+
+/* Número grande: 0 cortado a la mitad por el borde izquierdo */
+.page-header__num {
+  display: block;
+  font-size: clamp(9rem, 22vw, 19rem);
+  font-weight: var(--w-black);      /* 800 — máximo peso */
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  color: var(--color-dark);
+  /* -0.33em ≈ mitad del ancho del glifo "0" en Hanken Grotesk */
+  margin-left: -0.33em;
+  user-select: none;
+}
+
+/* Rayas divisorias */
+.page-header__rule {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 0.9rem 0;
+}
+
+/* Zona de etiqueta + título */
+.page-header__body {
+  padding: 0 var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Recuadro negro — letras blancas */
+.page-header__tag {
+  display: inline-flex;
+  align-self: flex-start;
+  background: var(--color-dark);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  padding: 0.32em 0.9em;
+}
+
+/* Título de la página */
+.page-header__title {
+  font-size: var(--size-display);
+  font-weight: var(--w-thin);
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  margin: 0;
+}
+
+.page-header__title strong { font-weight: var(--w-bold); }
+
+/* Variante sobre fondo oscuro (contacto) */
+.page-header--dark .page-header__num   { color: #fff; }
+.page-header--dark .page-header__rule  { border-color: rgba(255,255,255,0.15); }
+.page-header--dark .page-header__tag   { background: #fff; color: var(--color-dark); }
+.page-header--dark .page-header__title { color: #fff; }
+
+/* ── Navegación de página interior ─────────────────────────────────────── */
+
+.p-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem var(--gutter);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background: rgba(242,245,242,0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100;
+}
+
+.p-nav__logo svg {
+  height: 32px;
+  width: auto;
+  fill: var(--color-dark);
+  display: block;
+}
+
+.p-nav__links {
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  align-items: center;
+}
+
+.p-nav__link {
+  font-size: 0.72rem;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+
+.p-nav__link:hover    { opacity: 1; }
+.p-nav__link--active  { opacity: 1; }
+
+/* ── Breadcrumb / back link ─────────────────────────────────────────────── */
+
+.p-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--size-xs);
+  font-weight: var(--w-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mid);
+  opacity: 0.55;
+  transition: opacity 0.2s, gap 0.2s;
+  padding: 1rem var(--gutter);
+  display: block;
+}
+
+/* ── Responsive nav ─────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .p-nav__links { gap: 1.2rem; }
+  .p-nav__link  { font-size: 0.62rem; letter-spacing: 0.1em; }
+}
