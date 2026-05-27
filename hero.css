@@ -188,7 +188,7 @@
   font-weight: var(--w-light);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(242,245,242,0.5);
+  color: var(--color-mid);
 }
 
 .hero__scroll-line {
@@ -197,7 +197,6 @@
   background: var(--color-border);
   position: relative;
   overflow: hidden;
-  margin-left: 2rem;
 }
 
 .hero__scroll-line::after {
@@ -270,11 +269,11 @@
   padding: 0.1rem 0;
   border-radius: 0;
   font-weight: var(--w-semi);
-  transition: color var(--dur-fast), opacity var(--dur-fast);
+  transition: opacity var(--dur-fast);
 }
 
-.hero--plain .hero__eyebrow:hover .hero__eyebrow-link { opacity: 1; color: rgba(26,28,26,0.45); }
-.hero--plain .hero__eyebrow .hero__eyebrow-link:hover  { opacity: 1; color: var(--color-dark); font-weight: var(--w-bold); }
+.hero--plain .hero__eyebrow:hover .hero__eyebrow-link { opacity: 0.55; }
+.hero--plain .hero__eyebrow .hero__eyebrow-link:hover  { opacity: 1; font-weight: var(--w-bold); }
 
 /* Panel izquierdo: título grande, alineado al fondo */
 .hero--plain .hero__text {
@@ -306,11 +305,11 @@
 }
 
 .hero__desc-text {
-  font-size: clamp(1rem, 1.55vw, 1.45rem);
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
   font-weight: var(--w-bold);
   line-height: 1.2;
   color: var(--color-dark);
-  max-width: 320px;
+  max-width: 260px;
 }
 
 /* Ocultar elementos que no aplican */
@@ -390,180 +389,4 @@
   .hero__v-line { display: none; }
 
   .hero__title { font-size: clamp(3rem, 14vw, 6rem); }
-}
-
-/* ── Hero variante en capas — composición editorial tipo revista ──────────── */
-
-.hero--editorial {
-  background: var(--color-dark);
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Eyebrow — barra transparente superior */
-.hero--editorial .hero__eyebrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  padding: 0.9rem var(--gutter);
-  background: transparent;
-  position: relative;
-  flex-shrink: 0;
-  width: 100%;
-  z-index: 5;
-}
-
-.hero--editorial .hero__eyebrow::after { display: none; }
-
-.hero--editorial .hero__eyebrow-link {
-  background: transparent;
-  border-color: transparent;
-  padding: 0.15rem 0;
-  border-radius: 0;
-  font-weight: var(--w-medium);
-  color: var(--color-white);
-  letter-spacing: 0.12em;
-  position: relative;
-  transition: letter-spacing 0.3s ease, opacity 0.3s ease;
-}
-
-/* Subrayado animado de izquierda a derecha */
-.hero--editorial .hero__eyebrow-link::after {
-  content: '';
-  position: absolute;
-  bottom: -1px; left: 0;
-  width: 100%; height: 1px;
-  background: var(--color-white);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.hero--editorial .hero__eyebrow-link:hover {
-  letter-spacing: 0.18em;
-  opacity: 0.7;
-}
-
-.hero--editorial .hero__eyebrow-link:hover::after {
-  transform: scaleX(1);
-}
-
-@keyframes ghost-fade-in {
-  to { opacity: 1; }
-}
-
-/* ── Statement animado — 3 renglones ────────────────────────────────────── */
-.hero__statement {
-  position: absolute;
-  left: var(--gutter);
-  right: 0;                   /* sin límite derecho: las frases salen del hero */
-  top: 50%;
-  transform: translateY(-58%);
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* ── Renglón 1: "landa es" ───────────────────────────────────────────────── */
-.hero__statement-line1 {
-  display: block;
-  margin: 0;
-  line-height: 1;
-  /* baseline-alignment natural entre los dos spans */
-}
-
-/* "landa" — bold y 50 % más grande que "es" */
-.hero__statement-landa {
-  font-size: clamp(4.5rem, 9vw, 12rem);
-  font-weight: var(--w-bold);
-  letter-spacing: -0.05em;
-  color: var(--color-white);
-  user-select: none;
-  vertical-align: baseline;
-}
-
-/* "es" — peso normal, base de la jerarquía */
-.hero__statement-es {
-  font-size: clamp(3rem, 6vw, 8rem);   /* 2/3 de landa = base */
-  font-weight: var(--w-regular);
-  letter-spacing: -0.04em;
-  color: var(--color-white);
-  user-select: none;
-  vertical-align: baseline;
-}
-
-/* ── Renglón 2: frases rotantes ─────────────────────────────────────────── */
-
-/* Contenedor — hereda el tamaño de frase (75 % de "es") */
-.hero__words-container {
-  display: block;
-  position: relative;
-  font-size: clamp(2.25rem, 4.5vw, 6rem);  /* 75 % del base "es" */
-  height: 1.1em;
-  margin-top: 0.25em;
-  overflow: visible;
-}
-
-/* Frase individual — JS controla transform y opacity */
-.hero__word {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  font-size: 1em;
-  font-weight: var(--w-light);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: var(--color-white);
-  opacity: 0;
-  visibility: hidden;
-  will-change: transform, opacity;
-}
-
-/* Scroll indicator */
-.hero--editorial .hero__scroll {
-  position: absolute;
-  bottom: var(--sp-md);
-  left: var(--gutter);
-  opacity: 0;
-  z-index: 3;
-  animation: ghost-fade-in 1s 1.2s ease-out forwards;
-}
-
-/* Responsive */
-@media (max-width: 860px) {
-  .hero__ghost {
-    font-size: clamp(60px, 20vw, 100px);
-    top: 42%;
-  }
-
-  .hero__statement {
-    left: var(--gutter);
-    right: 0;
-  }
-
-  .hero__statement-landa  { font-size: clamp(3.2rem, 7vw, 8rem); }
-  .hero__statement-es     { font-size: clamp(2.1rem, 4.7vw, 5.3rem); }
-  .hero__words-container  { font-size: clamp(1.6rem, 3.5vw, 4rem); }
-}
-
-@media (max-width: 600px) {
-  .hero--editorial .hero__eyebrow {
-    gap: 0.9rem;
-    padding: 0.7rem var(--gutter);
-    overflow: hidden;
-  }
-
-  .hero--editorial .hero__eyebrow-link {
-    font-size: 0.62rem;
-    letter-spacing: 0.07em;
-    flex-shrink: 0;
-  }
-
-  .hero__statement-landa  { font-size: clamp(2.4rem, 11vw, 4rem); }
-  .hero__statement-es     { font-size: clamp(1.6rem, 7.3vw, 2.7rem); }
-  .hero__words-container  { font-size: clamp(1.2rem, 5.5vw, 2rem); }
 }

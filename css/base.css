@@ -187,3 +187,9 @@ strong { font-weight: var(--w-bold); color: var(--color-dark); }
 .ghost-num--light {
   color: rgba(242,245,242,0.10);
 }
+
+@media (hover: none) {
+  .cursor, .cursor-follower { display: none; }
+  body, a, button { cursor: auto; }
+  .filter-btn, .grid-cell, .servicio-item, .portfolio__arrow { cursor: pointer; }
+}

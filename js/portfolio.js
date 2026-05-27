@@ -106,15 +106,16 @@
       const num = String(i + 1).padStart(2, '0');
       const mediaHtml = p.img
         ? `<img class="grid-cell__img" src="${p.img}" alt="${p.nombre}" loading="lazy">`
-        : `<div class="grid-cell__placeholder" style="background:${p.bg};position:absolute;inset:0;"></div>`;
+        : `<div class="grid-cell__placeholder" style="background:${p.bg};"></div>`;
 
       return `
         <article class="grid-cell" role="listitem" data-index="${i}" tabindex="0" aria-label="${p.nombre}">
           ${mediaHtml}
-          <span class="grid-cell__num">${num}</span>
-          <div class="grid-cell__overlay">
+          <div class="grid-cell__filter"></div>
+          <div class="grid-cell__content">
+            <span class="grid-cell__num">${num}</span>
             <div class="grid-cell__name">${p.nombre}</div>
-            <div class="grid-cell__year">${p.año}</div>
+            <button class="grid-cell__gallery-btn" aria-label="Ver galería de ${p.nombre}">→</button>
           </div>
         </article>`;
     }).join('');

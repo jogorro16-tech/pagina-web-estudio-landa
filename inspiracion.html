@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspiración — Estudio Landa</title>
+  <meta name="description" content="Las referencias que alimentan nuestra visión: arquitectura japonesa, escandinava, europea y mexicana.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/nosotros.css">
+
+  <style>
+    /* Overrides para la página de inspiración */
+    .inspo-page { padding: var(--sp-md) var(--gutter) var(--sp-2xl); }
+
+    .inspo-page__header {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: var(--sp-xl);
+      padding-bottom: var(--sp-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .inspo-page__title {
+      font-size: var(--size-display);
+      font-weight: var(--w-thin);
+      letter-spacing: -0.03em;
+      margin-top: 0.5rem;
+      line-height: 1;
+    }
+
+    .inspo-page__title strong { font-weight: var(--w-bold); }
+
+    .inspo-page__intro {
+      margin-top: 1.5rem;
+      max-width: 640px;
+      font-size: var(--size-md);
+      font-weight: var(--w-light);
+      color: var(--color-mid);
+      line-height: 1.7;
+    }
+
+    /* Carpetas — pestañas más grandes */
+    .inspo-tabs { margin-bottom: var(--sp-lg); }
+
+    .inspo-tabs__nav {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .inspo-tab {
+      padding: 0.65rem 2rem;
+      font-size: 0.75rem;
+      font-weight: var(--w-medium);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(26,28,26,0.06);
+      border: 1px solid var(--color-border);
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      color: var(--color-mid);
+      transition: background 0.2s, color 0.2s;
+      position: relative;
+      bottom: 0;
+    }
+
+    .inspo-tab:hover {
+      background: rgba(26,28,26,0.10);
+      color: var(--color-dark);
+    }
+
+    .inspo-tab--active {
+      background: var(--color-bg);
+      color: var(--color-dark);
+      font-weight: var(--w-semi);
+      border-color: var(--color-border);
+      border-bottom-color: var(--color-bg);
+      z-index: 1;
+      bottom: -1px;
+    }
+
+    .inspo-panels { border: 1px solid var(--color-border); }
+
+    .inspo-panel { display: none; }
+    .inspo-panel--active { display: block; }
+
+    .inspo-panel__image { aspect-ratio: 16/7; }
+
+    /* Ciudades */
+    .inspo-cities {
+      margin-top: var(--sp-xl);
+      padding: var(--sp-lg) 0;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-md);
+    }
+
+    .inspo-cities__num {
+      font-size: var(--size-2xl);
+      font-weight: var(--w-thin);
+      letter-spacing: -0.04em;
+      color: var(--color-dark);
+      flex-shrink: 0;
+    }
+
+    .inspo-cities__desc {
+      font-size: var(--size-sm);
+      font-weight: var(--w-light);
+      color: var(--color-mid);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navegación ─────────────────────────────────────────────────────── -->
+  <nav class="p-nav">
+    <a href="index.html" class="p-nav__logo" aria-label="Estudio Landa — Inicio">
+      <svg viewBox="0 0 554.93 656.02" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="m66.6,595.78v-126.93h93.81v6.18h-87.25v51.49h77.32v5.99h-77.32v57.1h88.18v6.18h-94.73Z"/>
+        <polygon points="499.99 595.78 443.81 468.85 436.9 468.85 381.33 589.61 301.36 589.61 301.36 468.85 294.61 468.85 294.61 595.78 378.48 595.78 381.48 595.78 386.34 595.78 404.89 554.97 440.44 478.21 472.76 551 440.44 551 440.44 558.94 476.29 558.94 492.69 595.78 499.99 595.78"/>
+        <path d="m254.1,537.54c-.39-2.25-.93-3.83-1.78-6.31-1.11-3.24-2.18-5.62-2.48-6.27-.8-1.77-2.86-6.06-6.66-11.43-4.28-6.04-7.18-8.39-8.74-9.53-.78-.57-2.58-1.33-3.39-1.73-.36-.04-.73-.07-1.12-.05-1.93.08-3.39.92-3.87,1.2-1.03.61-1.89,1.4-3.46,3.58-.76,1.05-2.09,2.99-4.16,6.92-.61,1.16-1.66,3.2-2.86,5.85-.28.62-1.17,2.59-2.22,5.26-1.8,4.53-2.9,8.1-3.29,9.37-.56,1.84-.96,3.4-1.76,6.52-.41,1.6-.74,2.94-.94,4.77-.15,1.35-.25,2.36-.06,3.7.05.35.3,2.02,1.34,3.98.23.44,1.24,2.28,3.34,4.1,1.43,1.24,2.84,1.9,5.64,3.22.97.46,3.09,1.42,5.92,2.36.39.13.74.24,1.07.35.9.03,6.15.57,6.36.56,2.59-.17,4.48-.86,6.02-1.43,3.36-1.25,5.65-2.86,7.22-3.99,1-.72,2.66-1.91,4.51-3.83,1.21-1.25,2.47-2.55,3.63-4.65,1.53-2.76,1.95-5.17,2.03-5.66.43-2.66.08-4.7-.29-6.84Z"/>
+        <path d="m238.96,395.12c.62-9.33,1.33-16.88,1.81-21.59.34-3.32,1.06-10.2,2.23-18.96.91-6.83,1.7-11.95,2.47-16.88,1.21-7.77,1.82-11.66,2.83-17.12,1.16-6.26,2.56-13.71,5.12-23.24,1.04-3.85,2-7.06,2.71-9.36l1.8-6.73,1.45-4.1,1.87-6.3,1.51-4.95,1.8-5.81,3.31-10.15,3.75-12.37,3.44-12.43,2.32-9.26,3.12-15.76.8-5.69,1.04-7.88.8-14.38.16-15.6-.24-18.84-.48-17.22-.71-20.55-.89-12.02-1.2-16.57-1.2-13.89-1.39-15.12c-2.22-.27-4.47-.43-6.82-.33-11.75.48-20.69,5.62-23.61,7.34-6.27,3.7-11.5,8.51-21.09,21.82-4.63,6.42-12.73,18.24-25.36,42.22-3.72,7.06-10.12,19.51-17.44,35.66-1.71,3.76-7.11,15.78-13.57,32.08-10.95,27.65-17.71,49.39-20.07,57.13-3.41,11.21-5.86,20.73-10.75,39.77-2.51,9.75-4.52,17.95-5.72,29.07-.89,8.24-1.52,14.38-.36,22.55.3,2.13,1.85,12.34,8.14,24.27,1.43,2.71,7.54,13.92,20.34,24.99,8.73,7.55,17.29,11.59,34.42,19.67,5.91,2.79,18.86,8.68,36.13,14.36,2.38.78,4.51,1.48,6.54,2.13.24-7.16.58-13.88.98-19.97Z"/>
+        <path d="m417.81,257.44c-2.37-13.72-5.68-23.36-10.86-38.47-6.77-19.75-13.32-34.28-15.13-38.24-4.91-10.77-17.43-36.94-40.62-69.72-26.08-36.86-43.8-51.2-53.32-58.12-4.77-3.46-9.56-6.53-14.53-8.94l1.56,8.64c2.94,16.23,5.17,30.11,6.81,40.85,3.79,24.91,5.21,38.61,5.6,42.5.78,7.73,1.61,17.29,2.05,28.01.11,2.79.36,9.69.3,18.23-.03,4.23-.12,6.95-.18,8.44-.24,5.99-.63,10.4-.72,11.38-.22,2.44-.61,6.15-1.27,10.64-.5,3.43-.96,5.9-1.87,10.83-.56,3.04-1.35,7.27-2.47,12.54-.93,4.37-1.48,6.57-2.65,11.56-1.16,4.95-.79,3.51-4.52,20-3.25,14.38-3.56,15.58-4.34,19.63-1.1,5.69-1.88,10.53-2.41,14.01-.54,3.53-1.18,8.18-1.87,14.25-1.14,10.14-1.41,15.73-2.05,23.73-.62,7.78-1.56,15.85-3.43,31.99-1.3,11.2-1.84,14.97-3.43,28.56-.16,1.38-.56,4.8-1.14,9.42-.47,3.76-.9,6.99-1.24,9.48,5.52.17,9.38-.05,10.68-.13,15.82-1.06,27.3-5.24,36.71-8.74,20.51-7.64,34.47-17.46,44.06-24.32,6.12-4.37,16.2-11.64,27.53-23.37,7.36-7.61,15.05-15.58,22.15-28.34,9.36-16.82,11.89-31.56,12.37-34.53,2.63-16.21.48-28.67-1.78-41.74Z"/>
+      </svg>
+    </a>
+    <div class="p-nav__links">
+      <a href="portafolio.html" class="p-nav__link">Portafolio</a>
+      <a href="nosotros.html"   class="p-nav__link">Nosotros</a>
+      <a href="inspiracion.html" class="p-nav__link p-nav__link--active">Inspiración</a>
+      <a href="contacto.html"   class="p-nav__link">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- ── Contenido principal ────────────────────────────────────────────── -->
+  <main>
+    <div class="inspo-page">
+
+      <!-- Encabezado -->
+      <div class="page-header">
+        <span class="page-header__num" aria-hidden="true">03</span>
+        <hr class="page-header__rule">
+        <div class="page-header__body">
+          <span class="page-header__tag">Inspiración</span>
+          <h1 class="page-header__title">Nuestros <strong>referentes</strong></h1>
+        </div>
+        <hr class="page-header__rule">
+      </div>
+      <p class="inspo-page__intro">
+        El estudio nutre su visión de cuatro grandes tradiciones arquitectónicas: la precisión japonesa, la calidez escandinava, el rigor europeo y la identidad mexicana. Aquí guardamos esas carpetas de inspiración.
+      </p>
+
+      <!-- Pestañas tipo carpeta -->
+      <div class="inspo-tabs">
+        <div class="inspo-tabs__nav" role="tablist">
+          <button class="inspo-tab inspo-tab--active" role="tab" data-tab="japonesa" aria-selected="true" aria-controls="tab-japonesa">Japonesa</button>
+          <button class="inspo-tab" role="tab" data-tab="escandinava" aria-selected="false" aria-controls="tab-escandinava">Escandinava</button>
+          <button class="inspo-tab" role="tab" data-tab="europea" aria-selected="false" aria-controls="tab-europea">Europea</button>
+          <button class="inspo-tab" role="tab" data-tab="mexicana" aria-selected="false" aria-controls="tab-mexicana">Mexicana</button>
+        </div>
+
+        <div class="inspo-panels">
+
+          <div class="inspo-panel inspo-panel--active" id="tab-japonesa" role="tabpanel">
+            <div class="inspo-panel__header">
+              <h4 class="inspo-panel__name">Japonesa</h4>
+              <div class="inspo-panel__divider"></div>
+              <p class="inspo-panel__architects">Tadao Ando · Kengo Kuma</p>
+              <span class="inspo-panel__initial" aria-hidden="true">J</span>
+            </div>
+            <div class="inspo-panel__image">
+              <img src="assets/images/nosotros/japonesa.jpg" alt="Inspiración japonesa — Tadao Ando, Kengo Kuma">
+            </div>
+          </div>
+
+          <div class="inspo-panel" id="tab-escandinava" role="tabpanel">
+            <div class="inspo-panel__header">
+              <h4 class="inspo-panel__name">Escandinava</h4>
+              <div class="inspo-panel__divider"></div>
+              <p class="inspo-panel__architects">Norm Architects</p>
+              <span class="inspo-panel__initial" aria-hidden="true">E</span>
+            </div>
+            <div class="inspo-panel__image">
+              <img src="assets/images/nosotros/1escandinava.jpg" alt="Inspiración escandinava — Norm Architects">
+            </div>
+          </div>
+
+          <div class="inspo-panel" id="tab-europea" role="tabpanel">
+            <div class="inspo-panel__header">
+              <h4 class="inspo-panel__name">Europea</h4>
+              <div class="inspo-panel__divider"></div>
+              <p class="inspo-panel__architects">Mies van der Rohe · Carlo Scarpa · Bauhaus</p>
+              <span class="inspo-panel__initial" aria-hidden="true">E</span>
+            </div>
+            <div class="inspo-panel__image">
+              <img src="assets/images/nosotros/bauhaus.jpg" alt="Inspiración europea — Bauhaus, Mies, Scarpa">
+            </div>
+          </div>
+
+          <div class="inspo-panel" id="tab-mexicana" role="tabpanel">
+            <div class="inspo-panel__header">
+              <h4 class="inspo-panel__name">Mexicana</h4>
+              <div class="inspo-panel__divider"></div>
+              <p class="inspo-panel__architects">Luis Barragán · Ricardo Legorreta · Tatiana Bilbao</p>
+              <span class="inspo-panel__initial" aria-hidden="true">M</span>
+            </div>
+            <div class="inspo-panel__image">
+              <img src="assets/images/nosotros/mexicana.jpg" alt="Inspiración mexicana — Barragán, Legorreta, Bilbao">
+            </div>
+          </div>
+
+        </div><!-- /.inspo-panels -->
+      </div><!-- /.inspo-tabs -->
+
+      <!-- Ciudades visitadas -->
+      <div class="inspo-cities">
+        <span class="inspo-cities__num">+60</span>
+        <span class="inspo-cities__desc">ciudades visitadas — Europa, Japón, Corea, Norteamérica, Norte de África y Centroamérica</span>
+      </div>
+
+    </div><!-- /.inspo-page -->
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────────────────────── -->
+  <footer style="padding: 2rem var(--gutter); border-top: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.06em; color: var(--color-mid); opacity:0.5;">
+      © <span data-year></span> Estudio Landa
+    </p>
+    <nav style="display:flex; gap:2rem;">
+      <a href="portafolio.html" style="font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;opacity:0.45;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.45">Portafolio</a>
+      <a href="nosotros.html"   style="font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;opacity:0.45;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.45">Nosotros</a>
+      <a href="contacto.html"   style="font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;opacity:0.45;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.45">Contacto</a>
+    </nav>
+  </footer>
+
+  <script>
+    /* Año en footer */
+    document.querySelectorAll('[data-year]').forEach(el => {
+      el.textContent = new Date().getFullYear();
+    });
+
+    /* Pestañas de inspiración */
+    (function () {
+      const tabs   = document.querySelectorAll('.inspo-tab');
+      const panels = document.querySelectorAll('.inspo-panel');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+
+          tabs.forEach(t => {
+            t.classList.remove('inspo-tab--active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          panels.forEach(p => p.classList.remove('inspo-panel--active'));
+
+          tab.classList.add('inspo-tab--active');
+          tab.setAttribute('aria-selected', 'true');
+          const panel = document.getElementById('tab-' + target);
+          if (panel) panel.classList.add('inspo-panel--active');
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

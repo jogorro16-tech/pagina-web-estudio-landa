@@ -89,22 +89,25 @@
 /* ── Equipo ──────────────────────────────────────────────────────────────── */
 
 .nosotros__team {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--color-border);
 }
 
 .nosotros__member {
-  display: grid;
-  grid-template-columns: 60px 1fr 32px;
-  align-items: start;
-  gap: var(--sp-lg);
-  padding: var(--sp-lg) 0;
-  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  padding: var(--sp-xl) var(--sp-xl) var(--sp-xl) 0;
+  border-right: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
-  transition: padding-left var(--dur-med) var(--ease);
+  transition: background var(--dur-med) var(--ease);
   cursor: default;
 }
+
+.nosotros__member:nth-child(n+2) { padding-left: var(--sp-xl); }
+.nosotros__member:last-child      { border-right: none; padding-right: 0; }
 
 .nosotros__member::before {
   content: '';
@@ -117,32 +120,30 @@
 }
 
 .nosotros__member:hover::before { transform: scaleX(1); }
-.nosotros__member:hover { padding-left: var(--sp-md); }
 
 .nosotros__member-num {
   font-size: var(--size-xs);
   font-weight: var(--w-light);
-  letter-spacing: 0.1em;
-  opacity: 0.25;
-  padding-top: 5px;
+  letter-spacing: 0.12em;
+  opacity: 0.3;
   font-variant-numeric: tabular-nums;
 }
 
 .nosotros__member-body {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.75rem;
+  flex: 1;
 }
 
 .nosotros__member-header {
   display: flex;
-  align-items: center;
-  gap: var(--sp-sm);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .nosotros__member-name {
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
   font-weight: var(--w-thin);
   letter-spacing: -0.03em;
   color: var(--color-dark);
@@ -154,20 +155,166 @@
   font-weight: var(--w-light);
   line-height: 1.75;
   color: var(--color-mid);
-  max-width: 560px;
 }
 
 .nosotros__member-arrow {
-  font-size: var(--size-lg);
+  font-size: var(--size-base);
   color: rgba(26,28,26,0.15);
   transition: color var(--dur-fast), transform var(--dur-med) var(--ease);
-  padding-top: 4px;
+  margin-top: auto;
   line-height: 1;
+  align-self: flex-start;
 }
 
 .nosotros__member:hover .nosotros__member-arrow {
   color: var(--color-accent);
-  transform: translate(5px, -5px);
+  transform: translate(4px, -4px);
+}
+
+@media (max-width: 900px) {
+  .nosotros__team { grid-template-columns: 1fr; }
+  .nosotros__member {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+/* ── Split-screen equipo ────────────────────────────────────────────────── */
+
+.team-split {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  min-height: 52vh;
+  margin-bottom: var(--sp-2xl);
+  overflow: hidden;
+}
+
+/* — Izquierda ————————————————————————————————————————————————————————————— */
+
+.team-split__left {
+  flex: 0 0 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--sp-xl) var(--sp-xl) var(--sp-xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-split__name-wrap {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.team-split__name-wrap.is-exiting {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.team-split__name-wrap.is-entering {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: nameFadeIn 0.38s ease forwards;
+}
+
+@keyframes nameFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.team-split__name {
+  display: block;
+  font-size: clamp(3.8rem, 7.5vw, 9.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--color-dark);
+  user-select: none;
+}
+
+/* — Botones de navegación ———————————————————————————————————————————————— */
+
+.team-split__nav {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: var(--sp-lg);
+}
+
+.team-split__btn {
+  font-size: 0.68rem;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.22em;
+  color: var(--color-dark);
+  opacity: 0.2;
+  padding: 0.35em 0.8em;
+  border: 1px solid transparent;
+  transition: opacity 0.2s, border-color 0.2s;
+  cursor: pointer;
+  font-family: inherit;
+  background: none;
+}
+
+.team-split__btn:hover           { opacity: 0.55; }
+.team-split__btn--active         { opacity: 1; border-color: var(--color-dark); }
+
+/* — Divisor vertical ————————————————————————————————————————————————————— */
+
+.team-split__divider {
+  width: 1px;
+  background: var(--color-border);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* — Derecha ——————————————————————————————————————————————————————————————— */
+
+.team-split__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp-md);
+  padding: var(--sp-xl) 0 var(--sp-xl) var(--sp-xl);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.team-split__right.is-exiting {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.team-split__right.is-entering {
+  animation: nameFadeIn 0.38s ease forwards;
+}
+
+.team-split__role {
+  align-self: flex-start;
+}
+
+.team-split__bio {
+  font-size: var(--size-sm);
+  font-weight: var(--w-light);
+  line-height: 1.8;
+  color: var(--color-mid);
+  max-width: 38ch;
+}
+
+/* — Responsive ——————————————————————————————————————————————————————————— */
+
+@media (max-width: 560px) {
+  .team-split {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .team-split__left    { padding: var(--sp-xl) 0 var(--sp-md); }
+  .team-split__divider { width: 100%; height: 1px; }
+  .team-split__right   { padding: var(--sp-lg) 0; }
+  .team-split__name    { font-size: clamp(3rem, 14vw, 5rem); }
 }
 
 /* ── Docencia ────────────────────────────────────────────────────────────── */
