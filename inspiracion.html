@@ -121,19 +121,19 @@
       line-height: 1.6;
     }
 
-    /* ── Moodboard editorial — columna vertical ─────────────────────────── */
+    /* ── Moodboard editorial — 5 columnas verticales ────────────────────── */
 
     .moodboard {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 6px;
       padding: 6px;
       background: var(--color-bg);
+      height: clamp(320px, 52vw, 680px);
     }
 
     .moodboard__item {
-      width: 100%;
-      height: clamp(200px, 28vw, 420px);
+      flex: 1;
       overflow: hidden;
       position: relative;
     }
@@ -148,7 +148,13 @@
     }
 
     .moodboard__item:hover img {
-      transform: scale(1.04);
+      transform: scale(1.06);
+    }
+
+    /* Móvil: 2 columnas */
+    @media (max-width: 600px) {
+      .moodboard { height: auto; flex-wrap: wrap; }
+      .moodboard__item { flex: 0 0 calc(50% - 3px); aspect-ratio: 2/3; }
     }
   </style>
 </head>
