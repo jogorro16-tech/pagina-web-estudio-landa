@@ -121,7 +121,7 @@
       line-height: 1.6;
     }
 
-    /* ── Moodboard editorial ─────────────────────────────────────────────── */
+    /* ── Moodboard editorial — columna vertical ─────────────────────────── */
 
     .moodboard {
       display: flex;
@@ -131,26 +131,10 @@
       background: var(--color-bg);
     }
 
-    .moodboard__row {
-      display: flex;
-      gap: 6px;
-      height: clamp(160px, 30vh, 320px);
-    }
-
-    .moodboard__row--full {
-      height: clamp(120px, 22vh, 240px);
-    }
-
-    /* Proporciones asimétricas — crean tensión visual */
-    .moodboard__row--ab .moodboard__item:nth-child(1) { flex: 60; }
-    .moodboard__row--ab .moodboard__item:nth-child(2) { flex: 40; }
-    .moodboard__row--ba .moodboard__item:nth-child(1) { flex: 35; }
-    .moodboard__row--ba .moodboard__item:nth-child(2) { flex: 65; }
-    .moodboard__row--full .moodboard__item             { flex: 1; }
-
     .moodboard__item {
+      width: 100%;
+      height: clamp(200px, 28vw, 420px);
       overflow: hidden;
-      flex-shrink: 0;
       position: relative;
     }
 
@@ -158,24 +142,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       display: block;
       transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .moodboard__item:hover img {
-      transform: scale(1.05);
-    }
-
-    /* Móvil: apilar en columna */
-    @media (max-width: 600px) {
-      .moodboard__row {
-        flex-direction: column;
-        height: auto;
-      }
-      .moodboard__row .moodboard__item {
-        flex: none !important;
-        aspect-ratio: 4 / 3;
-      }
+      transform: scale(1.04);
     }
   </style>
 </head>
@@ -238,17 +211,11 @@
               <span class="inspo-panel__initial" aria-hidden="true">J</span>
             </div>
             <div class="moodboard">
-              <div class="moodboard__row moodboard__row--ab">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/1.jpg" alt="Jardín japonés"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/2.jpg" alt="Interior tatami"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--ba">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/3.jpg" alt="Koi"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/4.jpg" alt="Japonesa 4"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--full">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/5.jpg" alt="Japonesa 5"></div>
-              </div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/1.jpg" alt="Jardín japonés"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/2.jpg" alt="Interior tatami"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/3.jpg" alt="Koi"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/4.jpg" alt="Japonesa 4"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/japonesa/5.jpg" alt="Japonesa 5"></div>
             </div>
           </div>
 
@@ -261,17 +228,11 @@
               <span class="inspo-panel__initial" aria-hidden="true">E</span>
             </div>
             <div class="moodboard">
-              <div class="moodboard__row moodboard__row--ab">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/1.jpg" alt="Opera Oslo"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/2.jpg" alt="Escandinava 2"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--ba">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/3.jpg" alt="Interior Opera"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/4.jpg" alt="Escandinava 4"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--full">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/5.jpg" alt="Escandinava 5"></div>
-              </div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/1.jpg" alt="Opera Oslo"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/2.jpg" alt="Escandinava 2"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/3.jpg" alt="Interior Opera"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/4.jpg" alt="Escandinava 4"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/escandinava/5.jpg" alt="Escandinava 5"></div>
             </div>
           </div>
 
@@ -284,17 +245,11 @@
               <span class="inspo-panel__initial" aria-hidden="true">E</span>
             </div>
             <div class="moodboard">
-              <div class="moodboard__row moodboard__row--ab">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/europea/1.jpg" alt="Galleria Milano"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/europea/2.jpg" alt="Europea 2"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--ba">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/europea/3.jpg" alt="Europea 3"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/europea/4.jpg" alt="Europea 4"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--full">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/europea/5.jpg" alt="Europea 5"></div>
-              </div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/europea/1.jpg" alt="Galleria Milano"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/europea/2.jpg" alt="Europea 2"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/europea/3.jpg" alt="Europea 3"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/europea/4.jpg" alt="Europea 4"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/europea/5.jpg" alt="Europea 5"></div>
             </div>
           </div>
 
@@ -307,17 +262,11 @@
               <span class="inspo-panel__initial" aria-hidden="true">M</span>
             </div>
             <div class="moodboard">
-              <div class="moodboard__row moodboard__row--ab">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/1.jpg" alt="Mexicana 1"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/2.jpg" alt="Mexicana 2"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--ba">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/3.jpg" alt="Mexicana 3"></div>
-                <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/4.jpg" alt="Mexicana 4"></div>
-              </div>
-              <div class="moodboard__row moodboard__row--full">
-                <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/5.jpg" alt="Mexicana 5"></div>
-              </div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/1.jpg" alt="Mexicana 1"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/2.jpg" alt="Mexicana 2"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/3.jpg" alt="Mexicana 3"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/4.jpg" alt="Mexicana 4"></div>
+              <div class="moodboard__item"><img src="assets/images/inspiracion/mexicana/5.jpg" alt="Mexicana 5"></div>
             </div>
           </div>
 
