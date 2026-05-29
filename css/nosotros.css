@@ -591,3 +591,48 @@
 @media (max-width: 600px) {
   .nosotros__inspo-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Cuadrícula de puntos en área de nombre ─────────────────────────────── */
+
+/* Dots como pseudo-elemento detrás del nombre del integrante:
+   - centro (donde está el texto) = zona sin puntos
+   - bordes y esquinas = mayor densidad                            */
+.team-split__left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(26,28,26,0.55) 1.4px, transparent 1.4px);
+  background-size: 20px 20px;
+  /* Gradiente invertido: transparente en el centro, opaco en los bordes */
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 55% at 48% 60%,
+    transparent 0%,
+    transparent 28%,
+    rgba(0,0,0,0.3) 48%,
+    rgba(0,0,0,0.75) 66%,
+    black 88%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 55% at 48% 60%,
+    transparent 0%,
+    transparent 28%,
+    rgba(0,0,0,0.3) 48%,
+    rgba(0,0,0,0.75) 66%,
+    black 88%
+  );
+  animation: dots-drift 16s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Asegurar que el texto quede por encima de los puntos */
+.team-split__name-wrap,
+.team-split__nav {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes dots-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 20px 20px; }
+}
