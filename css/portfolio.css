@@ -53,13 +53,17 @@
 }
 
 .filter-btn--active {
-  background: var(--color-red);
   color: var(--color-white);
   opacity: 1;
   padding: 0.3rem 0.9rem;
   border-radius: 100px;
   border-color: transparent;
 }
+
+/* Color específico por categoría */
+.filter-btn[data-filter="all"].filter-btn--active  { background: var(--color-red); }
+.filter-btn[data-filter="res"].filter-btn--active  { background: var(--color-sage); }
+.filter-btn[data-filter="com"].filter-btn--active  { background: var(--color-steel); }
 
 /* ── Scroll horizontal tipo Floema ───────────────────────────────────────── */
 
@@ -273,14 +277,20 @@
   inset: 0;
 }
 
-/* Filtro rojo 50% — desaparece en hover */
+/* Overlay de color — desaparece en hover */
 .grid-cell__filter {
   position: absolute;
   inset: 0;
-  background: rgba(243, 52, 20, 0.50);
-  transition: opacity 0.45s var(--ease);
+  background: rgba(243, 52, 20, 0.50);   /* rojo — TODOS (default) */
+  transition: opacity 0.45s var(--ease), background 0.35s ease;
   z-index: 1;
 }
+
+/* Verde — RESIDENCIAL */
+.portfolio__grid--res .grid-cell__filter  { background: rgba(130, 179, 155, 0.58); }
+
+/* Azul — COMERCIAL */
+.portfolio__grid--com .grid-cell__filter  { background: rgba(44, 90, 142, 0.58); }
 
 .grid-cell:hover .grid-cell__filter { opacity: 0; }
 
