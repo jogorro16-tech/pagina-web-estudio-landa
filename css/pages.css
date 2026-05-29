@@ -91,11 +91,13 @@ strong { font-weight: var(--w-bold); color: var(--color-dark); }
 /* ── Encabezado editorial de sección ────────────────────────────────────── */
 
 .page-header {
-  overflow: hidden;        /* corta el "0" que sobresale por la izquierda */
+  overflow: hidden;           /* corta el "0" exactamente en la línea del gutter */
   padding-top: var(--sp-md);
+  margin-left: var(--gutter); /* el elemento empieza en el gutter → clip correcto */
+  margin-right: var(--gutter);
 }
 
-/* Número grande: 0 cortado a la mitad por el borde izquierdo */
+/* Número grande: "0" cortado a la mitad en el margen izquierdo */
 .page-header__num {
   display: block;
   font-size: clamp(9rem, 22vw, 19rem);
@@ -103,8 +105,7 @@ strong { font-weight: var(--w-bold); color: var(--color-dark); }
   letter-spacing: -0.06em;
   line-height: 0.85;
   color: var(--color-dark);
-  /* -0.33em ≈ mitad del ancho del glifo "0" en Hanken Grotesk */
-  margin-left: -0.33em;
+  margin-left: -0.33em;       /* empuja la mitad del "0" fuera del margen */
   user-select: none;
 }
 
@@ -115,9 +116,8 @@ strong { font-weight: var(--w-bold); color: var(--color-dark); }
   margin: 0.9rem 0;
 }
 
-/* Zona de etiqueta + título */
+/* Zona de etiqueta + título — sin padding extra, hereda el gutter del padre */
 .page-header__body {
-  padding: 0 var(--gutter);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

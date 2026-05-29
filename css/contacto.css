@@ -1,11 +1,17 @@
 /* ─── CONTACTO ───────────────────────────────────────────────────────────── */
 
 .contacto {
-  padding: var(--sp-2xl) var(--gutter);
+  padding: 0 var(--gutter) var(--sp-2xl);
   background: var(--color-dark);
   color: var(--color-bg);
   position: relative;
   overflow: hidden;
+}
+
+/* page-header anula el margen de pages.css (contacto ya provee el gutter) */
+.contacto .page-header {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* Marca de agua */

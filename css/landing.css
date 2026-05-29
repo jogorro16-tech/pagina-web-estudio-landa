@@ -50,10 +50,9 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
   height: 100dvh;
   overflow: hidden;
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "nav"
-    "text"
     "featured"
     "thumbs";
   opacity: 0;
@@ -72,12 +71,54 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
   padding: 1.4rem var(--gutter);
 }
 
+/* Logo + tagline agrupados a la izquierda */
+.l-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
 .l-nav__logo svg {
   height: 47px;
   width: auto;
   fill: var(--color-dark);
   display: block;
 }
+
+/* Tagline: "landa es" + frase rotatoria */
+.l-nav__tagline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.22rem;
+  padding-left: 1.8rem;
+  border-left: 1px solid rgba(26,28,26,0.13);
+}
+
+.l-nav__tl-name {
+  font-size: 0.68rem;
+  font-weight: var(--w-medium);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  line-height: 1;
+}
+
+.l-nav__tl-name em {
+  font-style: normal;
+  font-weight: var(--w-thin);
+}
+
+.l-nav__tl-phrases {
+  position: relative;
+  height: 1em;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  width: clamp(130px, 17vw, 230px);
+}
+
+/* Las frases heredan los estilos de .l-phrase (posición absoluta, animación) */
 
 .l-nav__links {
   display: flex;
@@ -96,39 +137,7 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
 
 .l-nav__link:hover { opacity: 1; }
 
-/* ── Texto: landa es + frases ────────────────────────────────────────────── */
-
-.l-text {
-  grid-area: text;
-  padding: 0 var(--gutter) 1.2rem;
-}
-
-.l-text__headline {
-  display: block;
-  line-height: 1;
-}
-
-.l-text__landa {
-  font-size: clamp(2.8rem, 6.5vw, 8.5rem);
-  font-weight: var(--w-bold);
-  letter-spacing: -0.05em;
-  color: var(--color-dark);
-}
-
-.l-text__es {
-  font-size: clamp(1.9rem, 4.3vw, 5.7rem);
-  font-weight: var(--w-regular);
-  letter-spacing: -0.04em;
-  color: var(--color-dark);
-}
-
-.l-text__phrases {
-  position: relative;
-  height: clamp(1.6rem, 3.2vw, 4.2rem);
-  font-size: clamp(1.2rem, 2.4vw, 3.2rem);
-  margin-top: -0.18em;
-  overflow: visible;
-}
+/* .l-text eliminado — "landa es" + frases ahora viven en .l-nav__tagline */
 
 .l-phrase {
   position: absolute;
@@ -136,7 +145,8 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
   white-space: nowrap;
   font-size: 1em;
   font-weight: var(--w-light);
-  letter-spacing: -0.04em;
+  font-style: italic;
+  letter-spacing: 0;
   line-height: 1;
   color: var(--color-dark);
   opacity: 0;
@@ -325,17 +335,22 @@ button { border: none; background: none; padding: 0; cursor: pointer; font: inhe
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 
+@media (max-width: 900px) {
+  /* En tablets: esconder las frases, mantener "landa es" */
+  .l-nav__tl-phrases { display: none; }
+}
+
 @media (max-width: 768px) {
   .l-featured__frame { width: 88%; }
-
-  .l-text__landa { font-size: clamp(2.2rem, 11vw, 4rem); }
-  .l-text__es    { font-size: clamp(1.5rem, 7.3vw, 2.7rem); }
-  .l-text__phrases { font-size: clamp(1rem, 5.5vw, 2rem); }
-
   .l-nav__links { gap: 1.2rem; }
 }
 
+@media (max-width: 600px) {
+  /* En móvil: ocultar todo el tagline */
+  .l-nav__tagline { display: none; }
+}
+
 @media (max-width: 480px) {
-  .l-nav__link { font-size: 0.62rem; letter-spacing: 0.1em; }
+  .l-nav__link       { font-size: 0.62rem; letter-spacing: 0.1em; }
   .l-featured__frame { width: 96%; }
 }

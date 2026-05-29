@@ -1,7 +1,7 @@
 /* ─── NOSOTROS ───────────────────────────────────────────────────────────── */
 
 .nosotros {
-  padding: var(--sp-2xl) var(--gutter);
+  padding: 0 var(--gutter) var(--sp-2xl);
   background: var(--color-bg);
   overflow: hidden;
 }
@@ -9,12 +9,12 @@
 /* Cita central */
 .nosotros__quote {
   text-align: center;
-  margin: 0 auto var(--sp-2xl);
+  margin: var(--sp-2xl) auto 0;
   max-width: 860px;
 }
 
 .nosotros__quote-text {
-  font-size: clamp(1.7rem, 4vw, 3.5rem);
+  font-size: clamp(1.19rem, 2.8vw, 2.45rem);
   font-weight: var(--w-thin);
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -27,14 +27,11 @@
   font-style: italic;
   color: inherit;
   font-weight: var(--w-regular);
-  background: rgba(236,229,69,0.38);
-  padding: 0.04em 0.18em;
-  border-radius: 3px;
 }
 
 .nosotros__quote-author {
   margin-top: var(--sp-md);
-  font-size: var(--size-xs);
+  font-size: 0.53rem;
   font-weight: var(--w-medium);
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -68,6 +65,13 @@
   background: rgba(236,229,69,0.38);
   padding: 0.04em 0.18em;
   border-radius: 3px;
+}
+
+/* El page-header dentro de .nosotros anula el margen de pages.css
+   porque .nosotros ya provee el gutter horizontal */
+.nosotros .page-header {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* Bloques genéricos */

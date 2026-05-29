@@ -27,11 +27,19 @@
 
     /* Todos los textos en blanco */
     .contacto, .contacto * { color: #fff; }
-    .form-label,
     .contacto__address,
     .social-link,
     .contacto__email-label,
     .contacto__copyright { color: rgba(255,255,255,0.55); }
+
+    /* Etiquetas del formulario: recuadro blanco, texto negro */
+    .form-label {
+      display: inline-block;
+      color: #000 !important;
+      background: #fff;
+      padding: 0.18em 0.5em;
+      margin-bottom: 0.2rem;
+    }
     .form-input::placeholder,
     .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
 
@@ -135,8 +143,8 @@
           <div>
             <p class="contacto__email-label">Ubicación</p>
             <p class="contacto__address">
-              México<br>
-              Disponibles para proyectos<br>en todo el país
+              Querétaro, Qro. México.<br>
+              Disponibles para proyectos en todo el país de manera remota*.
             </p>
           </div>
 
@@ -144,11 +152,8 @@
             <a class="social-link" href="https://www.instagram.com/estudiolanda/" target="_blank" rel="noopener">
               Instagram <span>↗</span>
             </a>
-            <a class="social-link" href="#" target="_blank" rel="noopener">
-              Houzz <span>↗</span>
-            </a>
-            <a class="social-link" href="#" target="_blank" rel="noopener">
-              LinkedIn <span>↗</span>
+            <a class="social-link" href="https://www.facebook.com/estudiolanda?locale=es_LA" target="_blank" rel="noopener">
+              Facebook <span>↗</span>
             </a>
           </div>
 
@@ -183,6 +188,28 @@
       el.textContent = new Date().getFullYear();
     });
 
+    /* ── WhatsApp via CallMeBot ─────────────────────────────────────────────
+       Para activar:
+       1. Cada número debe enviar "I allow callmebot to send me messages"
+          al +34 644 59 83 66 por WhatsApp y recibirá su apikey.
+       2. Reemplaza los valores de PHONE y APIKEY con los datos reales.
+    ──────────────────────────────────────────────────────────────────────── */
+    const WA_RECIPIENTS = [
+      { phone: 'TELEFONO_1', apikey: 'APIKEY_1' },   // ← reemplazar
+      { phone: 'TELEFONO_2', apikey: 'APIKEY_2' }    // ← reemplazar
+    ];
+
+    function sendWhatsApp(nombre, proyecto) {
+      const texto = encodeURIComponent(
+        `Nuevo contacto — Estudio Landa\nNombre: ${nombre}\nProyecto: ${proyecto || 'No especificado'}`
+      );
+      WA_RECIPIENTS.forEach(({ phone, apikey }) => {
+        if (phone.startsWith('TELEFONO')) return; // saltear placeholders
+        fetch(`https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${texto}&apikey=${apikey}`)
+          .catch(() => {}); // silenciar errores (no bloquear el flujo del form)
+      });
+    }
+
     /* Envío de formulario */
     const form = document.getElementById('contact-form');
     const statusEl = document.getElementById('form-status');
@@ -194,6 +221,9 @@
         btn.disabled = true;
         btn.innerHTML = 'Enviando <span>→</span>';
 
+        const nombre   = form.querySelector('#nombre')?.value   || '';
+        const proyecto = form.querySelector('#proyecto')?.value || '';
+
         try {
           const res = await fetch(form.action, {
             method: 'POST',
@@ -201,6 +231,7 @@
             headers: { 'Accept': 'application/json' }
           });
           if (res.ok) {
+            sendWhatsApp(nombre, proyecto);
             statusEl.style.display = 'block';
             statusEl.textContent = 'Mensaje enviado con éxito. Nos pondremos en contacto pronto.';
             form.reset();
