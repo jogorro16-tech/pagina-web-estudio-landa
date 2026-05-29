@@ -152,10 +152,18 @@
       transform: scale(1.06);
     }
 
-    /* Móvil: 2 columnas */
+    /* Móvil: 2 columnas, 4 fotos por categoría */
     @media (max-width: 600px) {
       .moodboard { height: auto; flex-wrap: wrap; }
       .moodboard__item { flex: 0 0 calc(50% - 3px); aspect-ratio: 2/3; }
+
+      /* Japonesa: ocultar foto 4 (mostrar 1,2,3,5) */
+      #tab-japonesa .moodboard__item:nth-child(4) { display: none; }
+
+      /* Escandinava, Europea, Mexicana: ocultar foto 5 (mostrar 1,2,3,4) */
+      #tab-escandinava .moodboard__item:nth-child(5) { display: none; }
+      #tab-europea     .moodboard__item:nth-child(5) { display: none; }
+      #tab-mexicana    .moodboard__item:nth-child(5) { display: none; }
     }
   </style>
 </head>
